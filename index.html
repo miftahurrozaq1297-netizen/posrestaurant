@@ -188,7 +188,8 @@
 </head>
 
 <body class="h-full bg-slate-100">
-    <div id="app" class="h-full flex overflow-hidden"><!-- Sidebar -->
+    <div id="app" class="h-full flex overflow-hidden">
+        <!-- Sidebar -->
         <aside id="sidebar" class="w-60 flex-shrink-0 flex flex-col"
             style="background: linear-gradient(180deg, #0f2b3c 0%, #163a50 100%);">
             <div class="p-5 border-b border-white/10">
@@ -202,7 +203,8 @@
                     </div>
                 </div>
             </div>
-            <nav class="flex-1 p-3 space-y-1 overflow-auto"><button onclick="switchPage('pos')" data-page="pos"
+            <nav class="flex-1 p-3 space-y-1 overflow-auto">
+                <button onclick="switchPage('pos')" data-page="pos"
                     class="sidebar-item active w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/90 text-sm font-medium">
                     <i data-lucide="monitor" class="w-4 h-4"></i> Kasir (POS) </button> <button
                     onclick="switchPage('orders')" data-page="orders"
@@ -227,18 +229,19 @@
                         data-lucide="moon" class="w-4 h-4"></i> End of Day (EOD) </button>
             </nav>
             <div class="p-3 border-t border-white/10">
-                <div class="flex items-center gap-2 px-3 py-2 text-white/40 text-xs"><i data-lucide="clock"
-                        class="w-3 h-3"></i> <span id="live-clock"></span>
-                </div><button onclick="showGoogleDriveModal()"
-                    class="mt-3 w-full px-3 py-2.5 bg-white/10 hover:bg-white/20 text-white/70 text-xs rounded-lg transition flex items-center justify-center gap-2"><i
-                        data-lucide="share-2" class="w-3 h-3"></i> Setup Google Drive</button>
+                <div class="flex items-center gap-2 px-3 py-2 text-white/40 text-xs">
+                    <i data-lucide="clock" class="w-3 h-3"></i> <span id="live-clock"></span>
+                </div>
             </div>
         </aside><!-- Main Content -->
-        <main class="flex-1 flex flex-col overflow-hidden"><!-- Page: POS -->
-            <div id="page-pos" class="page flex-1 flex overflow-hidden fade-in"><!-- Menu area -->
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <!-- Page: POS -->
+            <div id="page-pos" class="page flex-1 flex overflow-hidden fade-in">
+                <!-- Menu area -->
                 <div class="flex-1 flex flex-col overflow-hidden p-4">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="flex-1 relative"><i data-lucide="search"
+                        <div class="flex-1 relative">
+                            <i data-lucide="search"
                                 class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i> <input
                                 id="menu-search" type="text" placeholder="Cari menu..." oninput="filterMenu()"
                                 class="w-full pl-9 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
@@ -255,22 +258,23 @@
                         <p class="text-xs text-slate-400 mt-0.5">Order #<span id="order-num"></span></p>
                     </div>
                     <div id="cart-items" class="flex-1 overflow-auto p-3 space-y-2"></div>
-                    <div id="cart-empty" class="flex-1 flex flex-col items-center justify-center text-slate-300 p-4"><i
-                            data-lucide="shopping-cart" class="w-10 h-10 mb-2"></i>
+                    <div id="cart-empty" class="flex-1 flex flex-col items-center justify-center text-slate-300 p-4">
+                        <i data-lucide="shopping-cart" class="w-10 h-10 mb-2"></i>
                         <p class="text-sm">Belum ada item</p>
                     </div>
                     <div class="border-t border-slate-100 p-4 space-y-2">
-                        <div class="flex justify-between text-sm text-slate-500">
-                            <span>Subtotal</span><span id="cart-subtotal">Rp 0</span>
+                        <div class="flex justify-between text-sm text-slate-500"><span>Subtotal</span><span
+                                id="cart-subtotal">Rp 0</span>
                         </div>
-                        <div class="flex justify-between text-sm text-slate-500">
-                            <span>Pajak (10%)</span><span id="cart-tax">Rp 0</span>
+                        <div class="flex justify-between text-sm text-slate-500"><span>Pajak (10%)</span><span
+                                id="cart-tax">Rp 0</span>
                         </div>
                         <div
                             class="flex justify-between font-bold text-lg text-slate-800 pt-1 border-t border-dashed border-slate-200">
                             <span>Total</span><span id="cart-total">Rp 0</span>
                         </div>
-                        <div class="flex gap-2 pt-2 flex-wrap"><button onclick="payOrder('cash')"
+                        <div class="flex gap-2 pt-2 flex-wrap">
+                            <button onclick="payOrder('cash')"
                                 class="flex-1 min-w-20 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold transition">💵
                                 Cash</button> <button onclick="payOrder('debit')"
                                 class="flex-1 min-w-20 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold transition">💳
@@ -290,424 +294,411 @@
                         class="px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
                 </div>
                 <div id="orders-table" class="bg-white rounded-2xl border border-slate-200 overflow-hidden"></div>
-            </div><!-- Page: Inventory -->
-            <div id="page-inventory" class="page flex-1 flex-col overflow-auto p-6 hidden fade-in">
-                <div class="flex items-center justify-between mb-5">
-                    <h2 class="text-xl font-bold text-slate-800">📦 Inventory</h2><button
-                        onclick="showModal('inventory-modal')"
-                        class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition flex items-center gap-2"><i
-                            data-lucide="plus" class="w-4 h-4"></i> Tambah Item</button>
-                </div>
-                <div id="inventory-table" class="bg-white rounded-2xl border border-slate-200 overflow-hidden"></div>
-            </div><!-- Page: Receiving -->
-            <div id="page-receiving" class="page flex-1 flex-col overflow-auto p-6 hidden fade-in">
-                <div class="flex items-center justify-between mb-5">
-                    <h2 class="text-xl font-bold text-slate-800">🚚 Receiving Barang</h2><button
-                        onclick="showModal('receiving-modal')"
-                        class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition flex items-center gap-2"><i
-                            data-lucide="plus" class="w-4 h-4"></i> Terima Barang</button>
-                </div>
-                <div id="receiving-table" class="bg-white rounded-2xl border border-slate-200 overflow-hidden"></div>
-            </div><!-- Page: Expenses -->
-            <div id="page-expenses" class="page flex-1 flex-col overflow-auto p-6 hidden fade-in">
-                <div class="flex items-center justify-between mb-5">
-                    <h2 class="text-xl font-bold text-slate-800">💸 Pengeluaran</h2><button
-                        onclick="showModal('expense-modal')"
-                        class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition flex items-center gap-2"><i
-                            data-lucide="plus" class="w-4 h-4"></i> Tambah Pengeluaran</button>
-                </div>
-                <div id="expenses-table" class="bg-white rounded-2xl border border-slate-200 overflow-hidden"></div>
-            </div><!-- Page: Reports -->
-            <div id="page-reports" class="page flex-1 flex-col overflow-auto p-6 hidden fade-in">
-                <div class="flex items-center justify-between mb-5">
-                    <h2 class="text-xl font-bold text-slate-800">📊 Laporan Keuangan</h2>
-                    <div class="flex gap-2"><select id="report-period" onchange="renderReports()"
+                <!-- Page: Inventory -->
+                <div id="page-inventory" class="page flex-1 flex-col overflow-auto p-6 hidden fade-in">
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-xl font-bold text-slate-800">📦 Inventory</h2><button
+                            onclick="showModal('inventory-modal')"
+                            class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition flex items-center gap-2"><i
+                                data-lucide="plus" class="w-4 h-4"></i> Tambah Item</button>
+                    </div>
+                    <div id="inventory-table" class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                    </div>
+                </div><!-- Page: Receiving -->
+                <div id="page-receiving" class="page flex-1 flex-col overflow-auto p-6 hidden fade-in">
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-xl font-bold text-slate-800">🚚 Receiving Barang</h2><button
+                            onclick="showModal('receiving-modal')"
+                            class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition flex items-center gap-2"><i
+                                data-lucide="plus" class="w-4 h-4"></i> Terima Barang</button>
+                    </div>
+                    <div id="receiving-table" class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                    </div>
+                </div><!-- Page: Expenses -->
+                <div id="page-expenses" class="page flex-1 flex-col overflow-auto p-6 hidden fade-in">
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-xl font-bold text-slate-800">💸 Pengeluaran</h2><button
+                            onclick="showModal('expense-modal')"
+                            class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition flex items-center gap-2"><i
+                                data-lucide="plus" class="w-4 h-4"></i> Tambah Pengeluaran</button>
+                    </div>
+                    <div id="expenses-table" class="bg-white rounded-2xl border border-slate-200 overflow-hidden"></div>
+                </div><!-- Page: Reports -->
+                <div id="page-reports" class="page flex-1 flex-col overflow-auto p-6 hidden fade-in">
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-xl font-bold text-slate-800">📊 Laporan Keuangan</h2>
+                        <div class="flex gap-2">
+                            <select id="report-period" onchange="renderReports()"
+                                class="px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none">
+                                <option value="daily">Harian</option>
+                                <option value="weekly">Mingguan</option>
+                                <option value="monthly">Bulanan</option>
+                            </select> <input type="date" id="report-date" onchange="renderReports()"
+                                class="px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none"> <button
+                                onclick="exportReportExcel()"
+                                class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold transition flex items-center gap-2"><i
+                                    data-lucide="download" class="w-4 h-4"></i> Export Excel</button> <a
+                                href="javascript:void(0)" id="drive-backup-btn"
+                                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold transition flex items-center gap-2"
+                                title="Upload ke Google Drive"><i data-lucide="cloud-upload" class="w-4 h-4"></i> Backup
+                                ke Drive</a>
+                        </div>
+                    </div>
+                    <div id="report-summary" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6"></div>
+                    <div id="report-detail" class="bg-white rounded-2xl border border-slate-200 overflow-hidden"></div>
+                </div><!-- Page: EOD -->
+                <div id="page-eod" class="page flex-1 flex-col overflow-auto p-6 hidden fade-in">
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-xl font-bold text-slate-800">🌙 End of Day (EOD)</h2><input type="date"
+                            id="eod-date"
                             class="px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none">
-                            <option value="daily">Harian</option>
-                            <option value="weekly">Mingguan</option>
-                            <option value="monthly">Bulanan</option>
-                        </select> <input type="date" id="report-date" onchange="renderReports()"
-                            class="px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none"> <button
-                            onclick="exportReportExcel()"
-                            class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold transition flex items-center gap-2"><i
-                                data-lucide="download" class="w-4 h-4"></i> Export Excel</button>
                     </div>
+                    <div id="eod-content"></div>
                 </div>
-                <div id="report-summary" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6"></div>
-                <div id="report-detail" class="bg-white rounded-2xl border border-slate-200 overflow-hidden"></div>
-            </div><!-- Page: EOD -->
-            <div id="page-eod" class="page flex-1 flex-col overflow-auto p-6 hidden fade-in">
-                <div class="flex items-center justify-between mb-5">
-                    <h2 class="text-xl font-bold text-slate-800">🌙 End of Day (EOD)</h2><input type="date"
-                        id="eod-date" class="px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none">
-                </div>
-                <div id="eod-content"></div>
-            </div>
-        </main>
-    </div><!-- Modal Overlay -->
-    <div id="modal-overlay"
-        class="fixed inset-0 bg-black/40 z-50 hidden flex items-center justify-center p-4 overflow-auto"
-        onclick="if(event.target===this)closeModal()"><!-- Inventory Modal -->
-        <div id="inventory-modal" class="modal-content hidden bg-white rounded-2xl w-full max-w-md p-6 fade-in">
-            <h3 class="text-lg font-bold text-slate-800 mb-4">Tambah Item Inventory</h3>
-            <form onsubmit="addInventory(event)" class="space-y-3">
-                <div>
-                    <label class="text-xs font-medium text-slate-500">Nama Item</label><input name="name" required
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
-                </div>
-                <div>
-                    <label class="text-xs font-medium text-slate-500">Kategori</label><select name="category"
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none">
-                        <option>Ikan</option>
-                        <option>Udang</option>
-                        <option>Cumi</option>
-                        <option>Kerang</option>
-                        <option>Kepiting</option>
-                        <option>Bumbu</option>
-                        <option>Sayuran</option>
-                        <option>Minuman</option>
-                        <option>Lainnya</option>
-                    </select>
-                </div>
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="text-xs font-medium text-slate-500">Stok</label><input name="qty" type="number"
-                            min="0" required
-                            class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+            </div><!-- Modal Overlay -->
+            <div id="modal-overlay"
+                class="fixed inset-0 bg-black/40 z-50 hidden flex items-center justify-center p-4 overflow-auto"
+                onclick="if(event.target===this)closeModal()">
+                <!-- Inventory Modal -->
+                <div id="inventory-modal" class="modal-content hidden bg-white rounded-2xl w-full max-w-md p-6 fade-in">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Tambah Item Inventory</h3>
+                    <form onsubmit="addInventory(event)" class="space-y-3">
+                        <div><label class="text-xs font-medium text-slate-500">Nama Item</label><input name="name"
+                                required
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                        </div>
+                        <div><label class="text-xs font-medium text-slate-500">Kategori</label><select name="category"
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none">
+                                <option>Ikan</option>
+                                <option>Udang</option>
+                                <option>Cumi</option>
+                                <option>Kerang</option>
+                                <option>Kepiting</option>
+                                <option>Bumbu</option>
+                                <option>Sayuran</option>
+                                <option>Minuman</option>
+                                <option>Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="text-xs font-medium text-slate-500">Stok</label><input name="qty"
+                                    type="number" min="0" required
+                                    class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                            </div>
+                            <div><label class="text-xs font-medium text-slate-500">Satuan</label><input name="unit"
+                                    value="kg" required
+                                    class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                            </div>
+                        </div>
+                        <div><label class="text-xs font-medium text-slate-500">Harga per Satuan (Rp)</label><input
+                                name="price" type="number" min="0" required
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                        </div>
+                        <div class="flex gap-2 pt-2"><button type="button" onclick="closeModal()"
+                                class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button><button
+                                type="submit"
+                                class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition">Simpan</button>
+                        </div>
+                    </form>
+                </div><!-- Receiving Modal -->
+                <div id="receiving-modal" class="modal-content hidden bg-white rounded-2xl w-full max-w-md p-6 fade-in">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Terima Barang</h3>
+                    <form onsubmit="addReceiving(event)" class="space-y-3">
+                        <div><label class="text-xs font-medium text-slate-500">Nama Barang</label><input name="name"
+                                required
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                        </div>
+                        <div><label class="text-xs font-medium text-slate-500">Supplier</label><input name="supplier"
+                                required
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="text-xs font-medium text-slate-500">Jumlah</label><input name="qty"
+                                    type="number" min="1" required
+                                    class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                            </div>
+                            <div><label class="text-xs font-medium text-slate-500">Harga Total (Rp)</label><input
+                                    name="total" type="number" min="0" required
+                                    class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                            </div>
+                        </div>
+                        <div><label class="text-xs font-medium text-slate-500">Catatan</label><input name="note"
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                        </div>
+                        <div class="flex gap-2 pt-2"><button type="button" onclick="closeModal()"
+                                class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button><button
+                                type="submit"
+                                class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition">Simpan</button>
+                        </div>
+                    </form>
+                </div><!-- Expense Modal -->
+                <div id="expense-modal" class="modal-content hidden bg-white rounded-2xl w-full max-w-md p-6 fade-in">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Tambah Pengeluaran</h3>
+                    <form onsubmit="addExpense(event)" class="space-y-3">
+                        <div><label class="text-xs font-medium text-slate-500">Kategori</label><select name="category"
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none">
+                                <option>Bahan Baku</option>
+                                <option>Gaji Karyawan</option>
+                                <option>Listrik &amp; Air</option>
+                                <option>Gas</option>
+                                <option>Sewa</option>
+                                <option>Perlengkapan</option>
+                                <option>Transport</option>
+                                <option>Marketing</option>
+                                <option>Lainnya</option>
+                            </select>
+                        </div>
+                        <div><label class="text-xs font-medium text-slate-500">Deskripsi</label><input name="name"
+                                required
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                        </div>
+                        <div><label class="text-xs font-medium text-slate-500">Jumlah (Rp)</label><input name="total"
+                                type="number" min="0" required
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                        </div>
+                        <div><label class="text-xs font-medium text-slate-500">Catatan</label><input name="note"
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                        </div>
+                        <div class="flex gap-2 pt-2"><button type="button" onclick="closeModal()"
+                                class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button><button
+                                type="submit"
+                                class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition">Simpan</button>
+                        </div>
+                    </form>
+                </div><!-- Payment Success Modal -->
+                <div id="payment-modal"
+                    class="modal-content hidden bg-white rounded-2xl w-full max-w-sm p-6 text-center fade-in">
+                    <div
+                        class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                        ✅
                     </div>
-                    <div>
-                        <label class="text-xs font-medium text-slate-500">Satuan</label><input name="unit" value="kg"
-                            required
-                            class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                    <h3 class="text-lg font-bold text-slate-800 mb-1">Pembayaran Berhasil!</h3>
+                    <p id="payment-info" class="text-slate-500 text-sm mb-4"></p>
+                    <div class="flex gap-2"><button onclick="printBill()"
+                            class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2"><i
+                                data-lucide="printer" class="w-4 h-4"></i> Cetak Bill</button> <button
+                            onclick="closeModal()"
+                            class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition">OK</button>
                     </div>
+                </div><!-- Payment Ref Modal -->
+                <div id="payment-ref-modal"
+                    class="modal-content hidden bg-white rounded-2xl w-full max-w-md p-6 fade-in">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Nomor Referensi <span
+                            id="ref-method-display"></span></h3>
+                    <form onsubmit="submitPaymentWithRef(event)" class="space-y-3">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">Nomor Referensi / Transaksi</label> <input
+                                id="ref-number-input" name="ref_number" required
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
+                                placeholder="Cth: 123456789">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">Nama Bank / Penerima (opsional)</label>
+                            <input id="ref-notes-input" name="ref_notes"
+                                class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
+                                placeholder="Cth: BCA / PT Maju Jaya">
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <button type="button" onclick="closeModal()"
+                                class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button>
+                            <button type="submit"
+                                class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition">Lanjutkan</button>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <label class="text-xs font-medium text-slate-500">Harga per Satuan (Rp)</label><input name="price"
-                        type="number" min="0" required
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
-                </div>
-                <div class="flex gap-2 pt-2">
-                    <button type="button" onclick="closeModal()"
-                        class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button><button
-                        type="submit"
-                        class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition">Simpan</button>
-                </div>
-            </form>
-        </div><!-- Receiving Modal -->
-        <div id="receiving-modal" class="modal-content hidden bg-white rounded-2xl w-full max-w-md p-6 fade-in">
-            <h3 class="text-lg font-bold text-slate-800 mb-4">Terima Barang</h3>
-            <form onsubmit="addReceiving(event)" class="space-y-3">
-                <div>
-                    <label class="text-xs font-medium text-slate-500">Nama Barang</label><input name="name" required
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
-                </div>
-                <div>
-                    <label class="text-xs font-medium text-slate-500">Supplier</label><input name="supplier" required
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
-                </div>
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="text-xs font-medium text-slate-500">Jumlah</label><input name="qty" type="number"
-                            min="1" required
-                            class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                <div id="eod-confirm-modal"
+                    class="modal-content hidden bg-white rounded-2xl w-full max-w-sm p-6 text-center fade-in">
+                    <div
+                        class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                        🌙
                     </div>
-                    <div>
-                        <label class="text-xs font-medium text-slate-500">Harga Total (Rp)</label><input name="total"
-                            type="number" min="0" required
-                            class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
+                    <h3 class="text-lg font-bold text-slate-800 mb-1">Proses End of Day?</h3>
+                    <p class="text-slate-500 text-sm mb-4">Semua transaksi hari ini akan ditutup dan laporan akan
+                        difinalisasi.</p>
+                    <div class="flex gap-2"><button onclick="closeModal()"
+                            class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button><button
+                            onclick="processEOD()"
+                            class="flex-1 py-2.5 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-sm font-semibold transition">Proses
+                            EOD</button>
                     </div>
-                </div>
-                <div>
-                    <label class="text-xs font-medium text-slate-500">Catatan</label><input name="note"
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
-                </div>
-                <div class="flex gap-2 pt-2">
-                    <button type="button" onclick="closeModal()"
-                        class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button><button
-                        type="submit"
-                        class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition">Simpan</button>
-                </div>
-            </form>
-        </div><!-- Expense Modal -->
-        <div id="expense-modal" class="modal-content hidden bg-white rounded-2xl w-full max-w-md p-6 fade-in">
-            <h3 class="text-lg font-bold text-slate-800 mb-4">Tambah Pengeluaran</h3>
-            <form onsubmit="addExpense(event)" class="space-y-3">
-                <div>
-                    <label class="text-xs font-medium text-slate-500">Kategori</label><select name="category"
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none">
-                        <option>Bahan Baku</option>
-                        <option>Gaji Karyawan</option>
-                        <option>Listrik &amp; Air</option>
-                        <option>Gas</option>
-                        <option>Sewa</option>
-                        <option>Perlengkapan</option>
-                        <option>Transport</option>
-                        <option>Marketing</option>
-                        <option>Lainnya</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="text-xs font-medium text-slate-500">Deskripsi</label><input name="name" required
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
-                </div>
-                <div>
-                    <label class="text-xs font-medium text-slate-500">Jumlah (Rp)</label><input name="total"
-                        type="number" min="0" required
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
-                </div>
-                <div>
-                    <label class="text-xs font-medium text-slate-500">Catatan</label><input name="note"
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
-                </div>
-                <div class="flex gap-2 pt-2">
-                    <button type="button" onclick="closeModal()"
-                        class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button><button
-                        type="submit"
-                        class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition">Simpan</button>
-                </div>
-            </form>
-        </div><!-- Payment Success Modal -->
-        <div id="payment-modal"
-            class="modal-content hidden bg-white rounded-2xl w-full max-w-sm p-6 text-center fade-in">
-            <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
-                ✅
-            </div>
-            <h3 class="text-lg font-bold text-slate-800 mb-1">Pembayaran Berhasil!</h3>
-            <p id="payment-info" class="text-slate-500 text-sm mb-4"></p>
-            <div class="flex gap-2">
-                <button onclick="printBill()"
-                    class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2"><i
-                        data-lucide="printer" class="w-4 h-4"></i> Cetak Bill</button> <button onclick="closeModal()"
-                    class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition">OK</button>
-            </div>
-        </div><!-- Google Drive Setup Modal -->
-        <div id="google-drive-modal" class="modal-content hidden bg-white rounded-2xl w-full max-w-md p-6 fade-in">
-            <h3 class="text-lg font-bold text-slate-800 mb-1">🔗 Setup Google Drive</h3>
-            <p class="text-xs text-slate-400 mb-4">Integrasikan Google Drive untuk backup data</p>
-            <form onsubmit="setupGoogleDrive(event)" class="space-y-3">
-                <div><label class="text-xs font-medium text-slate-500">Google Drive Folder Link</label>
-                    <p class="text-[10px] text-slate-400 mb-1.5">Salin URL folder:
-                        https://drive.google.com/drive/folders/xxxxx</p><input id="google-drive-link" type="text"
-                        placeholder="https://drive.google.com/drive/folders/..." required
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-cyan-400/40 font-mono">
-                </div>
-                <div><label class="text-xs font-medium text-slate-500">Google Sheet ID (Opsional)</label>
-                    <p class="text-[10px] text-slate-400 mb-1.5">Untuk export ke sheet</p><input id="google-sheet-id"
-                        type="text" placeholder="1a2b3c4d5e6f7g8h9i0j"
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-cyan-400/40 font-mono">
-                </div>
-                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3">
-                    <p class="text-xs text-amber-800"><strong>💡 Cara:</strong> Buat folder di Google Drive → Buka
-                        folder → Copy URL → Paste di sini</p>
-                </div>
-                <div class="flex gap-2 pt-2"><button type="button" onclick="closeModal()"
-                        class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button>
-                    <button type="submit"
-                        class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition">Simpan</button>
-                </div>
-            </form>
-            <div class="mt-4 pt-3 border-t border-slate-200">
-                <p class="text-[10px] text-slate-400 mb-2">📊 Backup:</p>
-                <p class="text-[10px] text-slate-500">Export Excel dari Reports, lalu upload ke folder Google Drive Anda
-                </p>
-            </div>
-        </div><!-- Payment Ref Modal -->
-        <div id="payment-ref-modal" class="modal-content hidden bg-white rounded-2xl w-full max-w-md p-6 fade-in">
-            <h3 class="text-lg font-bold text-slate-800 mb-4">Nomor Referensi <span id="ref-method-display"></span></h3>
-            <form onsubmit="submitPaymentWithRef(event)" class="space-y-3">
-                <div><label class="text-xs font-medium text-slate-500">Nomor Referensi / Transaksi</label> <input
-                        id="ref-number-input" name="ref_number" required
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
-                        placeholder="Cth: 123456789">
-                </div>
-                <div><label class="text-xs font-medium text-slate-500">Nama Bank / Penerima (opsional)</label> <input
-                        id="ref-notes-input" name="ref_notes"
-                        class="w-full mt-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
-                        placeholder="Cth: BCA / PT Maju Jaya">
-                </div>
-                <div class="flex gap-2 pt-2"><button type="button" onclick="closeModal()"
-                        class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button>
-                    <button type="submit"
-                        class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-sm font-semibold transition">Lanjutkan</button>
-                </div>
-            </form>
-        </div>
-        <div id="eod-confirm-modal"
-            class="modal-content hidden bg-white rounded-2xl w-full max-w-sm p-6 text-center fade-in">
-            <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
-                🌙
-            </div>
-            <h3 class="text-lg font-bold text-slate-800 mb-1">Proses End of Day?</h3>
-            <p class="text-slate-500 text-sm mb-4">Semua transaksi hari ini akan ditutup dan laporan akan difinalisasi.
-            </p>
-            <div class="flex gap-2">
-                <button onclick="closeModal()"
-                    class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button><button
-                    onclick="processEOD()"
-                    class="flex-1 py-2.5 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-sm font-semibold transition">Proses
-                    EOD</button>
-            </div>
-        </div><!-- Delete Confirm Modal -->
-        <div id="delete-confirm-modal"
-            class="modal-content hidden bg-white rounded-2xl w-full max-w-sm p-6 text-center fade-in">
-            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
-                🗑️
-            </div>
-            <h3 class="text-lg font-bold text-slate-800 mb-1">Hapus Item?</h3>
-            <p id="delete-info" class="text-slate-500 text-sm mb-4"></p>
-            <div class="flex gap-2">
-                <button onclick="closeModal()"
-                    class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button><button
-                    id="delete-confirm-btn"
-                    class="flex-1 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-xl text-sm font-semibold transition">Hapus</button>
-            </div>
-        </div><!-- Toast -->
-        <div id="toast-container" class="fixed bottom-4 right-4 z-[60] space-y-2"></div>
-        <script>
-            // ============ STATE ============
-            let allData = [];
-            let cart = [];
-            let currentPage = 'pos';
-            let orderCounter = 1;
-            let pendingDeleteRecord = null;
-            let pendingPaymentMethod = null;
+                </div><!-- Delete Confirm Modal -->
+                <div id="delete-confirm-modal"
+                    class="modal-content hidden bg-white rounded-2xl w-full max-w-sm p-6 text-center fade-in">
+                    <div
+                        class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                        🗑️
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-1">Hapus Item?</h3>
+                    <p id="delete-info" class="text-slate-500 text-sm mb-4"></p>
+                    <div class="flex gap-2"><button onclick="closeModal()"
+                            class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">Batal</button><button
+                            id="delete-confirm-btn"
+                            class="flex-1 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-xl text-sm font-semibold transition">Hapus</button>
+                    </div>
+                </div><!-- Toast -->
+                <div id="toast-container" class="fixed bottom-4 right-4 z-[60] space-y-2"></div>
+                <script>
+                    // ============ STATE ============
+                    let allData = [];
+                    let cart = [];
+                    let currentPage = 'pos';
+                    let orderCounter = 1;
+                    let pendingDeleteRecord = null;
+                    let pendingPaymentMethod = null;
+                    let isAutoSaving = false;
 
-            // Menu items (static reference data)
-            const MENU = [
-                { id: 'm1', name: 'Ikan Bakar', price: 65000, cat: 'Ikan', emoji: '🐟' },
-                { id: 'm2', name: 'Ikan Goreng', price: 55000, cat: 'Ikan', emoji: '🐟' },
-                { id: 'm3', name: 'Gurame Asam Manis', price: 85000, cat: 'Ikan', emoji: '🐟' },
-                { id: 'm4', name: 'Udang Bakar', price: 75000, cat: 'Udang', emoji: '🦐' },
-                { id: 'm5', name: 'Udang Saus Padang', price: 80000, cat: 'Udang', emoji: '🦐' },
-                { id: 'm6', name: 'Udang Goreng Tepung', price: 70000, cat: 'Udang', emoji: '🦐' },
-                { id: 'm7', name: 'Cumi Goreng Tepung', price: 60000, cat: 'Cumi', emoji: '🦑' },
-                { id: 'm8', name: 'Cumi Saus Tiram', price: 65000, cat: 'Cumi', emoji: '🦑' },
-                { id: 'm9', name: 'Kerang Saus Padang', price: 55000, cat: 'Kerang', emoji: '🐚' },
-                { id: 'm10', name: 'Kepiting Saus Tiram', price: 120000, cat: 'Kepiting', emoji: '🦀' },
-                { id: 'm11', name: 'Kepiting Asam Manis', price: 130000, cat: 'Kepiting', emoji: '🦀' },
-                { id: 'm12', name: 'Nasi Putih', price: 8000, cat: 'Pendamping', emoji: '🍚' },
-                { id: 'm13', name: 'Nasi Goreng Seafood', price: 45000, cat: 'Pendamping', emoji: '🍛' },
-                { id: 'm14', name: 'Kangkung Belacan', price: 25000, cat: 'Pendamping', emoji: '🥬' },
-                { id: 'm15', name: 'Es Teh Manis', price: 8000, cat: 'Minuman', emoji: '🧊' },
-                { id: 'm16', name: 'Es Jeruk', price: 10000, cat: 'Minuman', emoji: '🍊' },
-                { id: 'm17', name: 'Air Mineral', price: 5000, cat: 'Minuman', emoji: '💧' },
-                { id: 'm18', name: 'Es Kelapa Muda', price: 15000, cat: 'Minuman', emoji: '🥥' },
-            ];
-            const CATEGORIES = ['Semua', ...new Set(MENU.map(m => m.cat))];
-            let activeCat = 'Semua';
+                    // ⚙️ KONFIGURASI GOOGLE SHEETS & DRIVE - SUDAH DIKONFIGURASI
+                    const GOOGLE_DRIVE_FOLDER_LINK = 'https://drive.google.com/drive/folders/1VthozHT56_JfnOxr_D127WJYG_dTsMY3?usp=drive_link';
+                    const GOOGLE_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/1bpLkcrMOmytf7zqgoyQYCN2vSOqyBXC1pCl9vcnbxkc/edit?usp=drive_link';
 
-            // ============ HELPERS ============
-            const fmt = n => 'Rp ' + Number(n || 0).toLocaleString('id-ID');
-            const today = () => new Date().toISOString().slice(0, 10);
-            const genId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+                    // ============ GOOGLE SHEETS API ============
+                    // Fungsi untuk auto-backup ke Google Drive setiap kali ada transaksi
+                    function autoSaveToGoogleDrive() {
+                        if (isAutoSaving) return;
+                        isAutoSaving = true;
 
-            function showToast(msg, type = 'success') {
-                const c = document.getElementById('toast-container');
-                const t = document.createElement('div');
-                const bg = type === 'success' ? 'bg-emerald-600' : type === 'error' ? 'bg-red-600' : 'bg-amber-500';
-                t.className = `toast-enter ${bg} text-white px-4 py-3 rounded-xl text-sm font-medium shadow-lg max-w-xs`;
-                t.textContent = msg;
-                c.appendChild(t);
-                setTimeout(() => t.remove(), 3000);
-            }
+                        // Download data sebagai CSV
+                        generateAndDownloadBackup();
 
-            function showModal(id) {
-                document.getElementById('modal-overlay').classList.remove('hidden');
-                document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
-                document.getElementById(id).classList.remove('hidden');
-            }
-            function closeModal() {
-                document.getElementById('modal-overlay').classList.add('hidden');
-                document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
-            }
+                        // Reset flag setelah 2 detik
+                        setTimeout(() => { isAutoSaving = false; }, 2000);
+                    }
 
-            function switchPage(page) {
-                currentPage = page;
-                document.querySelectorAll('.page').forEach(p => { p.classList.add('hidden'); p.classList.remove('flex'); });
-                const el = document.getElementById('page-' + page);
-                if (el) { el.classList.remove('hidden'); el.classList.add('flex'); }
-                document.querySelectorAll('.sidebar-item').forEach(b => {
-                    b.classList.remove('active');
-                    b.classList.remove('text-white/90', 'font-medium');
-                    b.classList.add('text-white/60');
-                });
-                const btn = document.querySelector(`[data-page="${page}"]`);
-                if (btn) { btn.classList.add('active', 'text-white/90', 'font-medium'); btn.classList.remove('text-white/60'); }
-                if (page === 'orders') renderOrders();
-                if (page === 'inventory') renderInventory();
-                if (page === 'receiving') renderReceiving();
-                if (page === 'expenses') renderExpenses();
-                if (page === 'reports') renderReports();
-                if (page === 'eod') renderEOD();
-            }
+                    // Menu items (static reference data)
+                    const MENU = [
+                        { id: 'm1', name: 'Ikan Bakar', price: 65000, cat: 'Ikan', emoji: '🐟' },
+                        { id: 'm2', name: 'Ikan Goreng', price: 55000, cat: 'Ikan', emoji: '🐟' },
+                        { id: 'm3', name: 'Gurame Asam Manis', price: 85000, cat: 'Ikan', emoji: '🐟' },
+                        { id: 'm4', name: 'Udang Bakar', price: 75000, cat: 'Udang', emoji: '🦐' },
+                        { id: 'm5', name: 'Udang Saus Padang', price: 80000, cat: 'Udang', emoji: '🦐' },
+                        { id: 'm6', name: 'Udang Goreng Tepung', price: 70000, cat: 'Udang', emoji: '🦐' },
+                        { id: 'm7', name: 'Cumi Goreng Tepung', price: 60000, cat: 'Cumi', emoji: '🦑' },
+                        { id: 'm8', name: 'Cumi Saus Tiram', price: 65000, cat: 'Cumi', emoji: '🦑' },
+                        { id: 'm9', name: 'Kerang Saus Padang', price: 55000, cat: 'Kerang', emoji: '🐚' },
+                        { id: 'm10', name: 'Kepiting Saus Tiram', price: 120000, cat: 'Kepiting', emoji: '🦀' },
+                        { id: 'm11', name: 'Kepiting Asam Manis', price: 130000, cat: 'Kepiting', emoji: '🦀' },
+                        { id: 'm12', name: 'Nasi Putih', price: 8000, cat: 'Pendamping', emoji: '🍚' },
+                        { id: 'm13', name: 'Nasi Goreng Seafood', price: 45000, cat: 'Pendamping', emoji: '🍛' },
+                        { id: 'm14', name: 'Kangkung Belacan', price: 25000, cat: 'Pendamping', emoji: '🥬' },
+                        { id: 'm15', name: 'Es Teh Manis', price: 8000, cat: 'Minuman', emoji: '🧊' },
+                        { id: 'm16', name: 'Es Jeruk', price: 10000, cat: 'Minuman', emoji: '🍊' },
+                        { id: 'm17', name: 'Air Mineral', price: 5000, cat: 'Minuman', emoji: '💧' },
+                        { id: 'm18', name: 'Es Kelapa Muda', price: 15000, cat: 'Minuman', emoji: '🥥' },
+                    ];
+                    const CATEGORIES = ['Semua', ...new Set(MENU.map(m => m.cat))];
+                    let activeCat = 'Semua';
 
-            // ============ CLOCK ============
-            function updateClock() {
-                const now = new Date();
-                document.getElementById('live-clock').textContent = now.toLocaleString('id-ID', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-            }
-            setInterval(updateClock, 1000);
-            updateClock();
+                    // ============ HELPERS ============
+                    const fmt = n => 'Rp ' + Number(n || 0).toLocaleString('id-ID');
+                    const today = () => new Date().toISOString().slice(0, 10);
+                    const genId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
-            // ============ POS / MENU ============
-            function renderCatTabs() {
-                const c = document.getElementById('cat-tabs');
-                c.innerHTML = CATEGORIES.map(cat => {
-                    const isActive = activeCat === cat;
-                    return `<button onclick="switchCategory('${cat}')" class="px-4 py-1.5 rounded-full text-xs font-semibold transition ${isActive ? 'bg-cyan-600 text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'}">${cat}</button>`;
-                }).join('');
-                setTimeout(() => lucide.createIcons(), 50);
-            }
+                    function showToast(msg, type = 'success') {
+                        const c = document.getElementById('toast-container');
+                        const t = document.createElement('div');
+                        const bg = type === 'success' ? 'bg-emerald-600' : type === 'error' ? 'bg-red-600' : 'bg-amber-500';
+                        t.className = `toast-enter ${bg} text-white px-4 py-3 rounded-xl text-sm font-medium shadow-lg max-w-xs`;
+                        t.textContent = msg;
+                        c.appendChild(t);
+                        setTimeout(() => t.remove(), 3000);
+                    }
 
-            function switchCategory(cat) {
-                activeCat = cat;
-                renderCatTabs();
-                filterMenu();
-            }
+                    function showModal(id) {
+                        document.getElementById('modal-overlay').classList.remove('hidden');
+                        document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
+                        document.getElementById(id).classList.remove('hidden');
+                    }
+                    function closeModal() {
+                        document.getElementById('modal-overlay').classList.add('hidden');
+                        document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
+                    }
 
-            function filterMenu() {
-                const q = document.getElementById('menu-search').value.toLowerCase();
-                const items = MENU.filter(m => (activeCat === 'Semua' || m.cat === activeCat) && m.name.toLowerCase().includes(q));
-                const g = document.getElementById('menu-grid');
-                g.innerHTML = items.map(m => {
-                    const inCart = cart.find(c => c.id === m.id);
-                    return `<button onclick="addToCart('${m.id}')" class="menu-grid-item bg-white rounded-2xl border border-slate-200 p-4 text-left relative card-hover">
+                    function switchPage(page) {
+                        currentPage = page;
+                        document.querySelectorAll('.page').forEach(p => { p.classList.add('hidden'); p.classList.remove('flex'); });
+                        const el = document.getElementById('page-' + page);
+                        if (el) { el.classList.remove('hidden'); el.classList.add('flex'); }
+                        document.querySelectorAll('.sidebar-item').forEach(b => {
+                            b.classList.remove('active');
+                            b.classList.remove('text-white/90', 'font-medium');
+                            b.classList.add('text-white/60');
+                        });
+                        const btn = document.querySelector(`[data-page="${page}"]`);
+                        if (btn) { btn.classList.add('active', 'text-white/90', 'font-medium'); btn.classList.remove('text-white/60'); }
+                        if (page === 'orders') renderOrders();
+                        if (page === 'inventory') renderInventory();
+                        if (page === 'receiving') renderReceiving();
+                        if (page === 'expenses') renderExpenses();
+                        if (page === 'reports') renderReports();
+                        if (page === 'eod') renderEOD();
+                    }
+
+                    // ============ CLOCK ============
+                    function updateClock() {
+                        const now = new Date();
+                        document.getElementById('live-clock').textContent = now.toLocaleString('id-ID', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+                    }
+                    setInterval(updateClock, 1000);
+                    updateClock();
+
+                    // ============ POS / MENU ============
+                    function renderCatTabs() {
+                        const c = document.getElementById('cat-tabs');
+                        c.innerHTML = CATEGORIES.map(cat => {
+                            const isActive = activeCat === cat;
+                            return `<button onclick="switchCategory('${cat}')" class="px-4 py-1.5 rounded-full text-xs font-semibold transition ${isActive ? 'bg-cyan-600 text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'}">${cat}</button>`;
+                        }).join('');
+                    }
+
+                    function switchCategory(cat) {
+                        activeCat = cat;
+                        renderCatTabs();
+                        filterMenu();
+                    }
+
+                    function filterMenu() {
+                        const q = document.getElementById('menu-search').value.toLowerCase();
+                        const items = MENU.filter(m => (activeCat === 'Semua' || m.cat === activeCat) && m.name.toLowerCase().includes(q));
+                        const g = document.getElementById('menu-grid');
+                        g.innerHTML = items.map(m => {
+                            const inCart = cart.find(c => c.id === m.id);
+                            return `<button onclick="addToCart('${m.id}')" class="menu-grid-item bg-white rounded-2xl border border-slate-200 p-4 text-left relative card-hover">
       ${inCart ? `<span class="num-badge bg-cyan-600 text-white absolute top-2 right-2">${inCart.qty}</span>` : ''}
       <div class="text-3xl mb-2">${m.emoji}</div>
       <p class="font-semibold text-slate-800 text-sm leading-tight">${m.name}</p>
       <p class="text-cyan-600 font-bold text-sm mt-1">${fmt(m.price)}</p>
     </button>`;
-                }).join('');
-                setTimeout(() => lucide.createIcons(), 50);
-            }
+                        }).join('');
+                        setTimeout(() => lucide.createIcons(), 50);
+                    }
 
-            function addToCart(id) {
-                const m = MENU.find(x => x.id === id);
-                if (!m) return;
-                const existing = cart.find(c => c.id === id);
-                if (existing) existing.qty++;
-                else cart.push({ ...m, qty: 1 });
-                renderCart();
-                filterMenu();
-            }
-            function removeFromCart(id) {
-                const i = cart.findIndex(c => c.id === id);
-                if (i > -1) {
-                    if (cart[i].qty > 1) cart[i].qty--;
-                    else cart.splice(i, 1);
-                }
-                renderCart();
-                filterMenu();
-            }
-            function clearCart() { cart = []; renderCart(); filterMenu(); }
+                    function addToCart(id) {
+                        const m = MENU.find(x => x.id === id);
+                        if (!m) return;
+                        const existing = cart.find(c => c.id === id);
+                        if (existing) existing.qty++;
+                        else cart.push({ ...m, qty: 1 });
+                        renderCart();
+                        filterMenu();
+                    }
+                    function removeFromCart(id) {
+                        const i = cart.findIndex(c => c.id === id);
+                        if (i > -1) {
+                            if (cart[i].qty > 1) cart[i].qty--;
+                            else cart.splice(i, 1);
+                        }
+                        renderCart();
+                        filterMenu();
+                    }
+                    function clearCart() { cart = []; renderCart(); filterMenu(); }
 
-            function renderCart() {
-                const items = document.getElementById('cart-items');
-                const empty = document.getElementById('cart-empty');
-                if (cart.length === 0) { items.classList.add('hidden'); empty.classList.remove('hidden'); items.innerHTML = ''; }
-                else {
-                    items.classList.remove('hidden'); empty.classList.add('hidden');
-                    items.innerHTML = cart.map(c => `<div class="flex items-center gap-2 bg-slate-50 rounded-xl p-2.5">
+                    function renderCart() {
+                        const items = document.getElementById('cart-items');
+                        const empty = document.getElementById('cart-empty');
+                        if (cart.length === 0) { items.classList.add('hidden'); empty.classList.remove('hidden'); items.innerHTML = ''; }
+                        else {
+                            items.classList.remove('hidden'); empty.classList.add('hidden');
+                            items.innerHTML = cart.map(c => `<div class="flex items-center gap-2 bg-slate-50 rounded-xl p-2.5">
       <span class="text-xl">${c.emoji}</span>
       <div class="flex-1 min-w-0"><p class="text-xs font-semibold text-slate-800 truncate">${c.name}</p><p class="text-xs text-slate-400">${fmt(c.price)}</p></div>
       <div class="flex items-center gap-1">
@@ -717,33 +708,33 @@
       </div>
       <span class="text-xs font-bold text-slate-700 w-20 text-right">${fmt(c.price * c.qty)}</span>
     </div>`).join('');
-                }
-                const sub = cart.reduce((s, c) => s + c.price * c.qty, 0);
-                const tax = Math.round(sub * 0.1);
-                document.getElementById('cart-subtotal').textContent = fmt(sub);
-                document.getElementById('cart-tax').textContent = fmt(tax);
-                document.getElementById('cart-total').textContent = fmt(sub + tax);
-            }
+                        }
+                        const sub = cart.reduce((s, c) => s + c.price * c.qty, 0);
+                        const tax = Math.round(sub * 0.1);
+                        document.getElementById('cart-subtotal').textContent = fmt(sub);
+                        document.getElementById('cart-tax').textContent = fmt(tax);
+                        document.getElementById('cart-total').textContent = fmt(sub + tax);
+                    }
 
-            async function payOrder(method) {
-                if (cart.length === 0) { showToast('Keranjang kosong!', 'error'); return; }
-                pendingPaymentMethod = method;
-                if (method === 'cash') {
-                    await processPayment(method, '', '');
-                } else {
-                    showRefModal(method);
-                }
-            }
+                    async function payOrder(method) {
+                        if (cart.length === 0) { showToast('Keranjang kosong!', 'error'); return; }
+                        pendingPaymentMethod = method;
+                        if (method === 'cash') {
+                            await processPayment(method, '', '');
+                        } else {
+                            showRefModal(method);
+                        }
+                    }
 
-            function showRefModal(method) {
-                const overlay = document.getElementById('modal-overlay');
-                const refModal = document.getElementById('payment-ref-modal');
-                if (!refModal) {
-                    // Create modal if it doesn't exist
-                    const modal = document.createElement('div');
-                    modal.id = 'payment-ref-modal';
-                    modal.className = 'modal-content hidden bg-white rounded-2xl w-full max-w-md p-6 fade-in';
-                    modal.innerHTML = `
+                    function showRefModal(method) {
+                        const overlay = document.getElementById('modal-overlay');
+                        const refModal = document.getElementById('payment-ref-modal');
+                        if (!refModal) {
+                            // Create modal if it doesn't exist
+                            const modal = document.createElement('div');
+                            modal.id = 'payment-ref-modal';
+                            modal.className = 'modal-content hidden bg-white rounded-2xl w-full max-w-md p-6 fade-in';
+                            modal.innerHTML = `
       <h3 class="text-lg font-bold text-slate-800 mb-4">Nomor Referensi <span id="ref-method-display"></span></h3>
       <form onsubmit="submitPaymentWithRef(event)" class="space-y-3">
         <div>
@@ -760,205 +751,347 @@
         </div>
       </form>
     `;
-                    document.getElementById('modal-overlay').appendChild(modal);
-                }
+                            document.getElementById('modal-overlay').appendChild(modal);
+                        }
 
-                document.getElementById('ref-method-display').textContent = '(' + method.toUpperCase() + ')';
-                overlay.classList.remove('hidden');
-                document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
-                document.getElementById('payment-ref-modal').classList.remove('hidden');
-            }
+                        document.getElementById('ref-method-display').textContent = '(' + method.toUpperCase() + ')';
+                        overlay.classList.remove('hidden');
+                        document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
+                        document.getElementById('payment-ref-modal').classList.remove('hidden');
+                    }
 
-            async function submitPaymentWithRef(e) {
-                e.preventDefault();
-                const f = new FormData(e.target);
-                await processPayment(pendingPaymentMethod, f.get('ref_number'), f.get('ref_notes'));
-                closeModal();
-            }
+                    async function submitPaymentWithRef(e) {
+                        e.preventDefault();
+                        const f = new FormData(e.target);
+                        await processPayment(pendingPaymentMethod, f.get('ref_number'), f.get('ref_notes'));
+                        closeModal();
+                    }
 
-            async function processPayment(method, refNum, refNotes) {
-                const sub = cart.reduce((s, c) => s + c.price * c.qty, 0);
-                const tax = Math.round(sub * 0.1);
-                const total = sub + tax;
-                const oid = 'ORD-' + String(orderCounter).padStart(4, '0');
+                    async function processPayment(method, refNum, refNotes) {
+                        const sub = cart.reduce((s, c) => s + c.price * c.qty, 0);
+                        const tax = Math.round(sub * 0.1);
+                        const total = sub + tax;
+                        const oid = 'ORD-' + String(orderCounter).padStart(4, '0');
 
-                if (allData.length + cart.length >= 999) { showToast('Batas data tercapai (999). Hapus data lama terlebih dahulu.', 'error'); return; }
+                        // Tambah data ke array allData
+                        for (const c of cart) {
+                            const note = method !== 'cash' ? `Ref: ${refNum} | ${refNotes}` : '';
+                            allData.push({
+                                __backendId: genId(),
+                                type: 'sale',
+                                date: new Date().toISOString(),
+                                item_name: c.name,
+                                item_price: c.price,
+                                item_qty: c.qty,
+                                total: c.price * c.qty,
+                                category: c.cat,
+                                payment_method: method,
+                                note: note,
+                                order_id: oid,
+                                status: 'completed'
+                            });
+                        }
 
-                for (const c of cart) {
-                    const note = method !== 'cash' ? `Ref: ${refNum} | ${refNotes}` : '';
-                    const r = await window.dataSdk.create({
-                        type: 'sale', date: new Date().toISOString(), item_name: c.name, item_price: c.price,
-                        item_qty: c.qty, total: c.price * c.qty, category: c.cat, payment_method: method,
-                        note: note, order_id: oid, status: 'completed'
-                    });
-                    if (r.isError) { showToast('Gagal menyimpan: ' + r.error.message, 'error'); return; }
-                }
-                orderCounter++;
+                        orderCounter++;
 
-                // Store last transaction for bill printing
-                window.lastTransaction = {
-                    orderId: oid,
-                    items: cart.map(c => ({ name: c.name, qty: c.qty, price: c.price, total: c.price * c.qty })),
-                    subtotal: sub,
-                    tax: tax,
-                    total: total,
-                    method: method,
-                    refNum: refNum,
-                    refNotes: refNotes,
-                    time: new Date().toLocaleTimeString('id-ID'),
-                    date: new Date().toLocaleDateString('id-ID')
-                };
+                        // Store last transaction for bill printing
+                        window.lastTransaction = {
+                            orderId: oid,
+                            items: cart.map(c => ({ name: c.name, qty: c.qty, price: c.price, total: c.price * c.qty })),
+                            subtotal: sub,
+                            tax: tax,
+                            total: total,
+                            method: method,
+                            refNum: refNum,
+                            refNotes: refNotes,
+                            time: new Date().toLocaleTimeString('id-ID'),
+                            date: new Date().toLocaleDateString('id-ID')
+                        };
 
-                document.getElementById('order-num').textContent = String(orderCounter).padStart(4, '0');
-                const methodText = method === 'cash' ? 'CASH' : method === 'debit' ? 'DEBIT' : 'QRIS';
-                document.getElementById('payment-info').textContent = `${oid} • ${fmt(total)} • ${methodText}`;
-                showModal('payment-modal');
-                cart = [];
-                renderCart();
-                filterMenu();
-            }
+                        document.getElementById('order-num').textContent = String(orderCounter).padStart(4, '0');
+                        const methodText = method === 'cash' ? 'CASH' : method === 'debit' ? 'DEBIT' : 'QRIS';
+                        document.getElementById('payment-info').textContent = `${oid} • ${fmt(total)} • ${methodText}`;
+                        showModal('payment-modal');
+                        cart = [];
+                        renderCart();
+                        filterMenu();
 
-            // ============ ORDERS PAGE ============
-            function renderOrders() {
-                const dateFilter = document.getElementById('order-date-filter').value || today();
-                const sales = allData.filter(d => d.type === 'sale' && d.date && d.date.startsWith(dateFilter));
-                // Group by order_id
-                const orders = {};
-                sales.forEach(s => { if (!orders[s.order_id]) orders[s.order_id] = { items: [], total: 0, method: s.payment_method, date: s.date }; orders[s.order_id].items.push(s); orders[s.order_id].total += Number(s.total || 0); });
-                const keys = Object.keys(orders).sort().reverse();
-                const el = document.getElementById('orders-table');
-                if (keys.length === 0) { el.innerHTML = '<div class="p-10 text-center text-slate-400 text-sm">Belum ada order untuk tanggal ini</div>'; return; }
-                let html = '<table class="w-full text-sm"><thead><tr class="bg-slate-50 text-slate-500 text-xs"><th class="px-4 py-3 text-left">Order ID</th><th class="px-4 py-3 text-left">Waktu</th><th class="px-4 py-3 text-left">Items</th><th class="px-4 py-3 text-left">Pembayaran</th><th class="px-4 py-3 text-right">Total</th></tr></thead><tbody>';
-                keys.forEach(k => {
-                    const o = orders[k];
-                    const time = new Date(o.date).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-                    const itemNames = o.items.map(i => `${i.item_name} x${i.item_qty}`).join(', ');
-                    const totalWithTax = Math.round(o.total * 1.1);
-                    html += `<tr class="border-t border-slate-100 hover:bg-slate-50/50"><td class="px-4 py-3 font-semibold text-cyan-700">${k}</td><td class="px-4 py-3 text-slate-500">${time}</td><td class="px-4 py-3 text-slate-600 max-w-xs truncate">${itemNames}</td><td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-semibold ${o.method === 'cash' ? 'bg-emerald-100 text-emerald-700' : o.method === 'debit' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}">${o.method.toUpperCase()}</span></td><td class="px-4 py-3 text-right font-bold">${fmt(totalWithTax)}</td></tr>`;
-                });
-                html += '</tbody></table>';
-                el.innerHTML = html;
-            }
+                        // Auto-backup ke Google Drive
+                        autoSaveToGoogleDrive();
+                    }
 
-            // ============ INVENTORY PAGE ============
-            function renderInventory() {
-                const inv = allData.filter(d => d.type === 'inventory');
-                const el = document.getElementById('inventory-table');
-                if (inv.length === 0) { el.innerHTML = '<div class="p-10 text-center text-slate-400 text-sm">Belum ada item inventory</div>'; return; }
-                let html = '<table class="w-full text-sm"><thead><tr class="bg-slate-50 text-slate-500 text-xs"><th class="px-4 py-3 text-left">Nama</th><th class="px-4 py-3 text-left">Kategori</th><th class="px-4 py-3 text-right">Stok</th><th class="px-4 py-3 text-right">Harga/Satuan</th><th class="px-4 py-3 text-right">Nilai</th><th class="px-4 py-3 text-center">Aksi</th></tr></thead><tbody>';
-                inv.forEach(i => {
-                    const val = Number(i.item_qty || 0) * Number(i.item_price || 0);
-                    const low = Number(i.item_qty || 0) < 5;
-                    html += `<tr class="border-t border-slate-100 hover:bg-slate-50/50"><td class="px-4 py-3 font-medium text-slate-800">${i.item_name}</td><td class="px-4 py-3 text-slate-500">${i.category || '-'}</td><td class="px-4 py-3 text-right ${low ? 'text-red-600 font-bold' : 'text-slate-700'}">${i.item_qty} ${i.note || 'kg'}</td><td class="px-4 py-3 text-right text-slate-600">${fmt(i.item_price)}</td><td class="px-4 py-3 text-right font-semibold">${fmt(val)}</td><td class="px-4 py-3 text-center"><button onclick="confirmDelete('${i.__backendId}','${i.item_name}')" class="text-red-400 hover:text-red-600 transition text-xs">Hapus</button></td></tr>`;
-                });
-                html += '</tbody></table>';
-                el.innerHTML = html;
-            }
+                    // ============ ORDERS PAGE ============
+                    function renderOrders() {
+                        const dateFilter = document.getElementById('order-date-filter').value || today();
+                        const sales = allData.filter(d => d.type === 'sale' && d.date && d.date.startsWith(dateFilter));
+                        // Group by order_id
+                        const orders = {};
+                        sales.forEach(s => { if (!orders[s.order_id]) orders[s.order_id] = { items: [], total: 0, method: s.payment_method, date: s.date }; orders[s.order_id].items.push(s); orders[s.order_id].total += Number(s.total || 0); });
+                        const keys = Object.keys(orders).sort().reverse();
+                        const el = document.getElementById('orders-table');
+                        if (keys.length === 0) { el.innerHTML = '<div class="p-10 text-center text-slate-400 text-sm">Belum ada order untuk tanggal ini</div>'; return; }
+                        let html = '<table class="w-full text-sm"><thead><tr class="bg-slate-50 text-slate-500 text-xs"><th class="px-4 py-3 text-left">Order ID</th><th class="px-4 py-3 text-left">Waktu</th><th class="px-4 py-3 text-left">Items</th><th class="px-4 py-3 text-left">Pembayaran</th><th class="px-4 py-3 text-right">Total</th><th class="px-4 py-3 text-center">Cetak Bill</th></tr></thead><tbody>';
+                        keys.forEach(k => {
+                            const o = orders[k];
+                            const time = new Date(o.date).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+                            const date = new Date(o.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                            const itemNames = o.items.map(i => `${i.item_name} x${i.item_qty}`).join(', ');
+                            const totalWithTax = Math.round(o.total * 1.1);
+                            const refNum = o.items[0]?.note?.match(/Ref: (\S+)/)?.[1] || '';
+                            const refNotes = o.items[0]?.note?.split(' | ')[1] || '';
+                            html += `<tr class="border-t border-slate-100 hover:bg-slate-50/50"><td class="px-4 py-3 font-semibold text-cyan-700">${k}</td><td class="px-4 py-3 text-slate-500">${time}</td><td class="px-4 py-3 text-slate-600 max-w-xs truncate">${itemNames}</td><td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-semibold ${o.method === 'cash' ? 'bg-emerald-100 text-emerald-700' : o.method === 'debit' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}">${o.method.toUpperCase()}</span></td><td class="px-4 py-3 text-right font-bold">${fmt(totalWithTax)}</td><td class="px-4 py-3 text-center"><button onclick="printBillFromOrder('${k}', ${JSON.stringify(o.items)}, ${totalWithTax}, '${o.method}', '${refNum}', '${refNotes}', '${date}', '${time}')" class="text-cyan-500 hover:text-cyan-700 transition text-xs font-medium flex items-center justify-center gap-1"><i data-lucide="printer" class="w-3 h-3"></i> Cetak</button></td></tr>`;
+                        });
+                        html += '</tbody></table>';
+                        el.innerHTML = html;
+                        lucide.createIcons();
+                    }
 
-            async function addInventory(e) {
-                e.preventDefault();
-                const f = new FormData(e.target);
-                if (allData.length >= 999) { showToast('Batas data tercapai!', 'error'); return; }
-                const r = await window.dataSdk.create({ type: 'inventory', date: new Date().toISOString(), item_name: f.get('name'), item_price: Number(f.get('price')), item_qty: Number(f.get('qty')), total: Number(f.get('price')) * Number(f.get('qty')), category: f.get('category'), payment_method: '', note: f.get('unit'), order_id: '', status: 'active' });
-                if (r.isOk) { showToast('Item inventory ditambahkan'); closeModal(); e.target.reset(); }
-                else showToast('Gagal: ' + r.error.message, 'error');
-            }
+                    function printBillFromOrder(orderId, items, total, method, refNum, refNotes, date, time) {
+                        const billEl = document.getElementById('bill-print');
+                        let billHtml = `
+    <div class="bill-header">
+      OCEAN FRESH SEAFOOD<br>
+      STRATUM MALL LT.3
+    </div>
+    <div class="bill-item">
+      <span>${date}</span>
+      <span>${time}</span>
+    </div>
+    <div class="bill-item">
+      <span>Order: ${orderId}</span>
+      <span>Metode: ${method.toUpperCase()}</span>
+    </div>
+    <div class="bill-separator"></div>
+  `;
 
-            // ============ RECEIVING PAGE ============
-            function renderReceiving() {
-                const rec = allData.filter(d => d.type === 'receiving');
-                const el = document.getElementById('receiving-table');
-                if (rec.length === 0) { el.innerHTML = '<div class="p-10 text-center text-slate-400 text-sm">Belum ada data receiving</div>'; return; }
-                let html = '<table class="w-full text-sm"><thead><tr class="bg-slate-50 text-slate-500 text-xs"><th class="px-4 py-3 text-left">Tanggal</th><th class="px-4 py-3 text-left">Barang</th><th class="px-4 py-3 text-left">Supplier</th><th class="px-4 py-3 text-right">Jumlah</th><th class="px-4 py-3 text-right">Total</th><th class="px-4 py-3 text-center">Aksi</th></tr></thead><tbody>';
-                rec.sort((a, b) => b.date.localeCompare(a.date)).forEach(r => {
-                    const d = new Date(r.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-                    html += `<tr class="border-t border-slate-100 hover:bg-slate-50/50"><td class="px-4 py-3 text-slate-500">${d}</td><td class="px-4 py-3 font-medium text-slate-800">${r.item_name}</td><td class="px-4 py-3 text-slate-500">${r.category || '-'}</td><td class="px-4 py-3 text-right">${r.item_qty}</td><td class="px-4 py-3 text-right font-semibold">${fmt(r.total)}</td><td class="px-4 py-3 text-center"><button onclick="confirmDelete('${r.__backendId}','${r.item_name}')" class="text-red-400 hover:text-red-600 transition text-xs">Hapus</button></td></tr>`;
-                });
-                html += '</tbody></table>';
-                el.innerHTML = html;
-            }
+                        items.forEach(item => {
+                            billHtml += `
+      <div class="bill-item">
+        <span>${item.item_name}</span>
+      </div>
+      <div class="bill-item">
+        <span>${item.item_qty}x @ Rp ${item.item_price.toLocaleString()}</span>
+        <span>Rp ${item.total.toLocaleString()}</span>
+      </div>
+    `;
+                        });
 
-            async function addReceiving(e) {
-                e.preventDefault();
-                const f = new FormData(e.target);
-                if (allData.length >= 999) { showToast('Batas data tercapai!', 'error'); return; }
-                const r = await window.dataSdk.create({ type: 'receiving', date: new Date().toISOString(), item_name: f.get('name'), item_price: 0, item_qty: Number(f.get('qty')), total: Number(f.get('total')), category: f.get('supplier'), payment_method: '', note: f.get('note') || '', order_id: '', status: 'received' });
-                if (r.isOk) { showToast('Receiving barang dicatat'); closeModal(); e.target.reset(); }
-                else showToast('Gagal: ' + r.error.message, 'error');
-            }
+                        const subtotal = total / 1.1;
+                        const tax = total - subtotal;
 
-            // ============ EXPENSES PAGE ============
-            function renderExpenses() {
-                const exp = allData.filter(d => d.type === 'expense');
-                const el = document.getElementById('expenses-table');
-                if (exp.length === 0) { el.innerHTML = '<div class="p-10 text-center text-slate-400 text-sm">Belum ada data pengeluaran</div>'; return; }
-                let html = '<table class="w-full text-sm"><thead><tr class="bg-slate-50 text-slate-500 text-xs"><th class="px-4 py-3 text-left">Tanggal</th><th class="px-4 py-3 text-left">Kategori</th><th class="px-4 py-3 text-left">Deskripsi</th><th class="px-4 py-3 text-right">Jumlah</th><th class="px-4 py-3 text-center">Aksi</th></tr></thead><tbody>';
-                exp.sort((a, b) => b.date.localeCompare(a.date)).forEach(r => {
-                    const d = new Date(r.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-                    html += `<tr class="border-t border-slate-100 hover:bg-slate-50/50"><td class="px-4 py-3 text-slate-500">${d}</td><td class="px-4 py-3"><span class="px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold">${r.category}</span></td><td class="px-4 py-3 text-slate-800">${r.item_name}</td><td class="px-4 py-3 text-right font-bold text-red-600">${fmt(r.total)}</td><td class="px-4 py-3 text-center"><button onclick="confirmDelete('${r.__backendId}','${r.item_name}')" class="text-red-400 hover:text-red-600 transition text-xs">Hapus</button></td></tr>`;
-                });
-                html += '</tbody></table>';
-                el.innerHTML = html;
-            }
+                        billHtml += `
+    <div class="bill-separator"></div>
+    <div class="bill-item">
+      <span>Subtotal</span>
+      <span>Rp ${Math.round(subtotal).toLocaleString()}</span>
+    </div>
+    <div class="bill-item">
+      <span>Pajak (10%)</span>
+      <span>Rp ${Math.round(tax).toLocaleString()}</span>
+    </div>
+    <div class="bill-total">
+      <span>TOTAL</span>
+      <span>Rp ${total.toLocaleString()}</span>
+    </div>
+  `;
 
-            async function addExpense(e) {
-                e.preventDefault();
-                const f = new FormData(e.target);
-                if (allData.length >= 999) { showToast('Batas data tercapai!', 'error'); return; }
-                const r = await window.dataSdk.create({ type: 'expense', date: new Date().toISOString(), item_name: f.get('name'), item_price: 0, item_qty: 1, total: Number(f.get('total')), category: f.get('category'), payment_method: '', note: f.get('note') || '', order_id: '', status: 'recorded' });
-                if (r.isOk) { showToast('Pengeluaran dicatat'); closeModal(); e.target.reset(); }
-                else showToast('Gagal: ' + r.error.message, 'error');
-            }
+                        if (refNum) {
+                            billHtml += `
+      <div class="bill-separator"></div>
+      <div class="bill-item">
+        <span>REF: ${refNum}</span>
+      </div>
+      ${refNotes ? `<div class="bill-item"><span>${refNotes}</span></div>` : ''}
+    `;
+                        }
 
-            // ============ DELETE ============
-            function confirmDelete(backendId, name) {
-                pendingDeleteRecord = allData.find(d => d.__backendId === backendId);
-                if (!pendingDeleteRecord) return;
-                document.getElementById('delete-info').textContent = `Yakin ingin menghapus "${name}"?`;
-                document.getElementById('delete-confirm-btn').onclick = async () => {
-                    const r = await window.dataSdk.delete(pendingDeleteRecord);
-                    if (r.isOk) { showToast('Item dihapus'); closeModal(); }
-                    else showToast('Gagal menghapus', 'error');
-                };
-                showModal('delete-confirm-modal');
-            }
+                        billHtml += `
+    <div class="bill-footer">
+      Terima Kasih!
+      <br>Semoga Lezat!
+    </div>
+  `;
 
-            // ============ REPORTS PAGE ============
-            function renderReports() {
-                const period = document.getElementById('report-period').value;
-                const dateVal = document.getElementById('report-date').value || today();
-                const refDate = new Date(dateVal);
+                        billEl.innerHTML = billHtml;
+                        window.print();
+                    }
 
-                let startDate, endDate, periodLabel;
-                if (period === 'daily') {
-                    startDate = dateVal; endDate = dateVal;
-                    periodLabel = new Date(dateVal).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-                } else if (period === 'weekly') {
-                    const dow = refDate.getDay();
-                    const mon = new Date(refDate); mon.setDate(refDate.getDate() - ((dow + 6) % 7));
-                    const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
-                    startDate = mon.toISOString().slice(0, 10); endDate = sun.toISOString().slice(0, 10);
-                    periodLabel = `${mon.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })} - ${sun.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}`;
-                } else {
-                    const y = refDate.getFullYear(), m = refDate.getMonth();
-                    startDate = new Date(y, m, 1).toISOString().slice(0, 10);
-                    endDate = new Date(y, m + 1, 0).toISOString().slice(0, 10);
-                    periodLabel = refDate.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
-                }
+                    // ============ INVENTORY PAGE ============
+                    function renderInventory() {
+                        const inv = allData.filter(d => d.type === 'inventory');
+                        const el = document.getElementById('inventory-table');
+                        if (inv.length === 0) { el.innerHTML = '<div class="p-10 text-center text-slate-400 text-sm">Belum ada item inventory</div>'; return; }
+                        let html = '<table class="w-full text-sm"><thead><tr class="bg-slate-50 text-slate-500 text-xs"><th class="px-4 py-3 text-left">Nama</th><th class="px-4 py-3 text-left">Kategori</th><th class="px-4 py-3 text-right">Stok</th><th class="px-4 py-3 text-right">Harga/Satuan</th><th class="px-4 py-3 text-right">Nilai</th><th class="px-4 py-3 text-center">Aksi</th></tr></thead><tbody>';
+                        inv.forEach(i => {
+                            const val = Number(i.item_qty || 0) * Number(i.item_price || 0);
+                            const low = Number(i.item_qty || 0) < 5;
+                            html += `<tr class="border-t border-slate-100 hover:bg-slate-50/50"><td class="px-4 py-3 font-medium text-slate-800">${i.item_name}</td><td class="px-4 py-3 text-slate-500">${i.category || '-'}</td><td class="px-4 py-3 text-right ${low ? 'text-red-600 font-bold' : 'text-slate-700'}">${i.item_qty} ${i.note || 'kg'}</td><td class="px-4 py-3 text-right text-slate-600">${fmt(i.item_price)}</td><td class="px-4 py-3 text-right font-semibold">${fmt(val)}</td><td class="px-4 py-3 text-center"><button onclick="confirmDelete('${i.__backendId}','${i.item_name}')" class="text-red-400 hover:text-red-600 transition text-xs">Hapus</button></td></tr>`;
+                        });
+                        html += '</tbody></table>';
+                        el.innerHTML = html;
+                    }
 
-                const inRange = (d) => { const ds = d.date ? d.date.slice(0, 10) : ''; return ds >= startDate && ds <= endDate; };
-                const sales = allData.filter(d => d.type === 'sale' && inRange(d));
-                const expenses = allData.filter(d => d.type === 'expense' && inRange(d));
-                const receiving = allData.filter(d => d.type === 'receiving' && inRange(d));
+                    async function addInventory(e) {
+                        e.preventDefault();
+                        const f = new FormData(e.target);
+                        const record = {
+                            __backendId: genId(),
+                            type: 'inventory',
+                            date: new Date().toISOString(),
+                            item_name: f.get('name'),
+                            item_price: Number(f.get('price')),
+                            item_qty: Number(f.get('qty')),
+                            total: Number(f.get('price')) * Number(f.get('qty')),
+                            category: f.get('category'),
+                            payment_method: '',
+                            note: f.get('unit'),
+                            order_id: '',
+                            status: 'active'
+                        };
+                        allData.push(record);
+                        showToast('Item inventory ditambahkan');
+                        closeModal();
+                        e.target.reset();
+                        renderInventory();
+                        autoSaveToGoogleDrive();
+                    }
 
-                const totalSales = sales.reduce((s, d) => s + Number(d.total || 0), 0);
-                const totalTax = Math.round(totalSales * 0.1);
-                const totalExpenses = expenses.reduce((s, d) => s + Number(d.total || 0), 0);
-                const totalReceiving = receiving.reduce((s, d) => s + Number(d.total || 0), 0);
-                const netProfit = totalSales + totalTax - totalExpenses - totalReceiving;
+                    // ============ RECEIVING PAGE ============
+                    function renderReceiving() {
+                        const rec = allData.filter(d => d.type === 'receiving');
+                        const el = document.getElementById('receiving-table');
+                        if (rec.length === 0) { el.innerHTML = '<div class="p-10 text-center text-slate-400 text-sm">Belum ada data receiving</div>'; return; }
+                        let html = '<table class="w-full text-sm"><thead><tr class="bg-slate-50 text-slate-500 text-xs"><th class="px-4 py-3 text-left">Tanggal</th><th class="px-4 py-3 text-left">Barang</th><th class="px-4 py-3 text-left">Supplier</th><th class="px-4 py-3 text-right">Jumlah</th><th class="px-4 py-3 text-right">Total</th><th class="px-4 py-3 text-center">Aksi</th></tr></thead><tbody>';
+                        rec.sort((a, b) => b.date.localeCompare(a.date)).forEach(r => {
+                            const d = new Date(r.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                            html += `<tr class="border-t border-slate-100 hover:bg-slate-50/50"><td class="px-4 py-3 text-slate-500">${d}</td><td class="px-4 py-3 font-medium text-slate-800">${r.item_name}</td><td class="px-4 py-3 text-slate-500">${r.category || '-'}</td><td class="px-4 py-3 text-right">${r.item_qty}</td><td class="px-4 py-3 text-right font-semibold">${fmt(r.total)}</td><td class="px-4 py-3 text-center"><button onclick="confirmDelete('${r.__backendId}','${r.item_name}')" class="text-red-400 hover:text-red-600 transition text-xs">Hapus</button></td></tr>`;
+                        });
+                        html += '</tbody></table>';
+                        el.innerHTML = html;
+                    }
 
-                const sumEl = document.getElementById('report-summary');
-                sumEl.innerHTML = `
+                    async function addReceiving(e) {
+                        e.preventDefault();
+                        const f = new FormData(e.target);
+                        const record = {
+                            __backendId: genId(),
+                            type: 'receiving',
+                            date: new Date().toISOString(),
+                            item_name: f.get('name'),
+                            item_price: 0,
+                            item_qty: Number(f.get('qty')),
+                            total: Number(f.get('total')),
+                            category: f.get('supplier'),
+                            payment_method: '',
+                            note: f.get('note') || '',
+                            order_id: '',
+                            status: 'received'
+                        };
+                        allData.push(record);
+                        showToast('Receiving barang dicatat');
+                        closeModal();
+                        e.target.reset();
+                        renderReceiving();
+                        autoSaveToGoogleDrive();
+                    }
+
+                    // ============ EXPENSES PAGE ============
+                    function renderExpenses() {
+                        const exp = allData.filter(d => d.type === 'expense');
+                        const el = document.getElementById('expenses-table');
+                        if (exp.length === 0) { el.innerHTML = '<div class="p-10 text-center text-slate-400 text-sm">Belum ada data pengeluaran</div>'; return; }
+                        let html = '<table class="w-full text-sm"><thead><tr class="bg-slate-50 text-slate-500 text-xs"><th class="px-4 py-3 text-left">Tanggal</th><th class="px-4 py-3 text-left">Kategori</th><th class="px-4 py-3 text-left">Deskripsi</th><th class="px-4 py-3 text-right">Jumlah</th><th class="px-4 py-3 text-center">Aksi</th></tr></thead><tbody>';
+                        exp.sort((a, b) => b.date.localeCompare(a.date)).forEach(r => {
+                            const d = new Date(r.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                            html += `<tr class="border-t border-slate-100 hover:bg-slate-50/50"><td class="px-4 py-3 text-slate-500">${d}</td><td class="px-4 py-3"><span class="px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold">${r.category}</span></td><td class="px-4 py-3 text-slate-800">${r.item_name}</td><td class="px-4 py-3 text-right font-bold text-red-600">${fmt(r.total)}</td><td class="px-4 py-3 text-center"><button onclick="confirmDelete('${r.__backendId}','${r.item_name}')" class="text-red-400 hover:text-red-600 transition text-xs">Hapus</button></td></tr>`;
+                        });
+                        html += '</tbody></table>';
+                        el.innerHTML = html;
+                    }
+
+                    async function addExpense(e) {
+                        e.preventDefault();
+                        const f = new FormData(e.target);
+                        const record = {
+                            __backendId: genId(),
+                            type: 'expense',
+                            date: new Date().toISOString(),
+                            item_name: f.get('name'),
+                            item_price: 0,
+                            item_qty: 1,
+                            total: Number(f.get('total')),
+                            category: f.get('category'),
+                            payment_method: '',
+                            note: f.get('note') || '',
+                            order_id: '',
+                            status: 'recorded'
+                        };
+                        allData.push(record);
+                        showToast('Pengeluaran dicatat');
+                        closeModal();
+                        e.target.reset();
+                        renderExpenses();
+                        autoSaveToGoogleDrive();
+                    }
+
+                    // ============ DELETE ============
+                    function confirmDelete(backendId, name) {
+                        pendingDeleteRecord = allData.find(d => d.__backendId === backendId);
+                        if (!pendingDeleteRecord) return;
+                        document.getElementById('delete-info').textContent = `Yakin ingin menghapus "${name}"?`;
+                        document.getElementById('delete-confirm-btn').onclick = () => {
+                            const idx = allData.indexOf(pendingDeleteRecord);
+                            if (idx > -1) {
+                                allData.splice(idx, 1);
+                                showToast('Item dihapus');
+                                closeModal();
+                                // Re-render current page
+                                if (currentPage === 'inventory') renderInventory();
+                                if (currentPage === 'receiving') renderReceiving();
+                                if (currentPage === 'expenses') renderExpenses();
+                                if (currentPage === 'orders') renderOrders();
+                                autoSaveToGoogleDrive();
+                            }
+                        };
+                        showModal('delete-confirm-modal');
+                    }
+
+                    // ============ REPORTS PAGE ============
+                    function renderReports() {
+                        const period = document.getElementById('report-period').value;
+                        const dateVal = document.getElementById('report-date').value || today();
+                        const refDate = new Date(dateVal);
+
+                        let startDate, endDate, periodLabel;
+                        if (period === 'daily') {
+                            startDate = dateVal; endDate = dateVal;
+                            periodLabel = new Date(dateVal).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+                        } else if (period === 'weekly') {
+                            const dow = refDate.getDay();
+                            const mon = new Date(refDate); mon.setDate(refDate.getDate() - ((dow + 6) % 7));
+                            const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+                            startDate = mon.toISOString().slice(0, 10); endDate = sun.toISOString().slice(0, 10);
+                            periodLabel = `${mon.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })} - ${sun.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}`;
+                        } else {
+                            const y = refDate.getFullYear(), m = refDate.getMonth();
+                            startDate = new Date(y, m, 1).toISOString().slice(0, 10);
+                            endDate = new Date(y, m + 1, 0).toISOString().slice(0, 10);
+                            periodLabel = refDate.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
+                        }
+
+                        const inRange = (d) => { const ds = d.date ? d.date.slice(0, 10) : ''; return ds >= startDate && ds <= endDate; };
+                        const sales = allData.filter(d => d.type === 'sale' && inRange(d));
+                        const expenses = allData.filter(d => d.type === 'expense' && inRange(d));
+                        const receiving = allData.filter(d => d.type === 'receiving' && inRange(d));
+
+                        const totalSales = sales.reduce((s, d) => s + Number(d.total || 0), 0);
+                        const totalTax = Math.round(totalSales * 0.1);
+                        const totalExpenses = expenses.reduce((s, d) => s + Number(d.total || 0), 0);
+                        const totalReceiving = receiving.reduce((s, d) => s + Number(d.total || 0), 0);
+                        const netProfit = totalSales + totalTax - totalExpenses - totalReceiving;
+
+                        const sumEl = document.getElementById('report-summary');
+                        sumEl.innerHTML = `
     <div class="bg-white rounded-2xl border border-slate-200 p-5 card-hover">
       <p class="text-xs text-slate-400 font-medium mb-1">💰 Total Penjualan</p>
       <p class="text-xl font-bold text-emerald-600">${fmt(totalSales + totalTax)}</p>
@@ -980,42 +1113,42 @@
       <p class="text-[10px] text-slate-400 mt-1">Penjualan - Pengeluaran - Receiving</p>
     </div>`;
 
-                // Breakdown by category
-                const byCat = {};
-                sales.forEach(s => { const c = s.category || 'Lainnya'; if (!byCat[c]) byCat[c] = 0; byCat[c] += Number(s.total || 0); });
-                const detEl = document.getElementById('report-detail');
-                let html = '<div class="p-5"><h3 class="font-bold text-slate-800 mb-3">Penjualan per Kategori</h3>';
-                if (Object.keys(byCat).length === 0) html += '<p class="text-slate-400 text-sm">Tidak ada data penjualan</p>';
-                else {
-                    html += '<div class="space-y-2">';
-                    Object.entries(byCat).sort((a, b) => b[1] - a[1]).forEach(([cat, val]) => {
-                        const pct = totalSales > 0 ? Math.round(val / totalSales * 100) : 0;
-                        html += `<div class="flex items-center gap-3"><span class="text-sm font-medium text-slate-700 w-28">${cat}</span><div class="flex-1 bg-slate-100 rounded-full h-3 overflow-hidden"><div class="h-full bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full transition-all" style="width:${pct}%"></div></div><span class="text-sm font-bold text-slate-700 w-28 text-right">${fmt(val)}</span><span class="text-xs text-slate-400 w-10 text-right">${pct}%</span></div>`;
-                    });
-                    html += '</div>';
-                }
+                        // Breakdown by category
+                        const byCat = {};
+                        sales.forEach(s => { const c = s.category || 'Lainnya'; if (!byCat[c]) byCat[c] = 0; byCat[c] += Number(s.total || 0); });
+                        const detEl = document.getElementById('report-detail');
+                        let html = '<div class="p-5"><h3 class="font-bold text-slate-800 mb-3">Penjualan per Kategori</h3>';
+                        if (Object.keys(byCat).length === 0) html += '<p class="text-slate-400 text-sm">Tidak ada data penjualan</p>';
+                        else {
+                            html += '<div class="space-y-2">';
+                            Object.entries(byCat).sort((a, b) => b[1] - a[1]).forEach(([cat, val]) => {
+                                const pct = totalSales > 0 ? Math.round(val / totalSales * 100) : 0;
+                                html += `<div class="flex items-center gap-3"><span class="text-sm font-medium text-slate-700 w-28">${cat}</span><div class="flex-1 bg-slate-100 rounded-full h-3 overflow-hidden"><div class="h-full bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full transition-all" style="width:${pct}%"></div></div><span class="text-sm font-bold text-slate-700 w-28 text-right">${fmt(val)}</span><span class="text-xs text-slate-400 w-10 text-right">${pct}%</span></div>`;
+                            });
+                            html += '</div>';
+                        }
 
-                // Payment method breakdown
-                const byMethod = {};
-                sales.forEach(s => { const m = s.payment_method || 'other'; if (!byMethod[m]) byMethod[m] = 0; byMethod[m] += Number(s.total || 0); });
-                html += '<h3 class="font-bold text-slate-800 mb-3 mt-6">Metode Pembayaran</h3><div class="grid grid-cols-3 gap-3">';
-                ['cash', 'debit', 'qris'].forEach(m => {
-                    const v = byMethod[m] || 0;
-                    const colors = { cash: 'emerald', debit: 'blue', qris: 'purple' };
-                    const c = colors[m];
-                    html += `<div class="bg-${c}-50 rounded-xl p-3 text-center"><p class="text-xs text-${c}-600 font-semibold mb-1">${m.toUpperCase()}</p><p class="font-bold text-${c}-700">${fmt(v)}</p></div>`;
-                });
-                html += '</div></div>';
-                detEl.innerHTML = html;
-            }
+                        // Payment method breakdown
+                        const byMethod = {};
+                        sales.forEach(s => { const m = s.payment_method || 'other'; if (!byMethod[m]) byMethod[m] = 0; byMethod[m] += Number(s.total || 0); });
+                        html += '<h3 class="font-bold text-slate-800 mb-3 mt-6">Metode Pembayaran</h3><div class="grid grid-cols-3 gap-3">';
+                        ['cash', 'debit', 'qris'].forEach(m => {
+                            const v = byMethod[m] || 0;
+                            const colors = { cash: 'emerald', debit: 'blue', qris: 'purple' };
+                            const c = colors[m];
+                            html += `<div class="bg-${c}-50 rounded-xl p-3 text-center"><p class="text-xs text-${c}-600 font-semibold mb-1">${m.toUpperCase()}</p><p class="font-bold text-${c}-700">${fmt(v)}</p></div>`;
+                        });
+                        html += '</div></div>';
+                        detEl.innerHTML = html;
+                    }
 
-            // ============ PRINT BILL ============
-            function printBill() {
-                const t = window.lastTransaction;
-                if (!t) { showToast('Tidak ada transaksi untuk dicetak', 'error'); return; }
+                    // ============ PRINT BILL ============
+                    function printBill() {
+                        const t = window.lastTransaction;
+                        if (!t) { showToast('Tidak ada transaksi untuk dicetak', 'error'); return; }
 
-                const billEl = document.getElementById('bill-print');
-                let billHtml = `
+                        const billEl = document.getElementById('bill-print');
+                        let billHtml = `
     <div class="bill-header">
       OCEAN FRESH SEAFOOD<br>
       STRATUM MALL LT.3
@@ -1031,8 +1164,8 @@
     <div class="bill-separator"></div>
   `;
 
-                t.items.forEach(item => {
-                    billHtml += `
+                        t.items.forEach(item => {
+                            billHtml += `
       <div class="bill-item">
         <span>${item.name}</span>
       </div>
@@ -1041,9 +1174,9 @@
         <span>Rp ${item.total.toLocaleString()}</span>
       </div>
     `;
-                });
+                        });
 
-                billHtml += `
+                        billHtml += `
     <div class="bill-separator"></div>
     <div class="bill-item">
       <span>Subtotal</span>
@@ -1059,145 +1192,107 @@
     </div>
   `;
 
-                if (t.refNum) {
-                    billHtml += `
+                        if (t.refNum) {
+                            billHtml += `
       <div class="bill-separator"></div>
       <div class="bill-item">
         <span>REF: ${t.refNum}</span>
       </div>
       ${t.refNotes ? `<div class="bill-item"><span>${t.refNotes}</span></div>` : ''}
     `;
-                }
+                        }
 
-                billHtml += `
+                        billHtml += `
     <div class="bill-footer">
       Terima Kasih!
       <br>Semoga Lezat!
     </div>
   `;
 
-                billEl.innerHTML = billHtml;
-                window.print();
-            }
+                        billEl.innerHTML = billHtml;
+                        window.print();
+                    }
 
-            // ============ EXPORT EXCEL ============
-            function exportReportExcel() {
-                const period = document.getElementById('report-period').value;
-                const dateVal = document.getElementById('report-date').value || today();
-                const refDate = new Date(dateVal);
-                let startDate, endDate;
-                if (period === 'daily') { startDate = dateVal; endDate = dateVal; }
-                else if (period === 'weekly') { const dow = refDate.getDay(); const mon = new Date(refDate); mon.setDate(refDate.getDate() - ((dow + 6) % 7)); const sun = new Date(mon); sun.setDate(mon.getDate() + 6); startDate = mon.toISOString().slice(0, 10); endDate = sun.toISOString().slice(0, 10); }
-                else { const y = refDate.getFullYear(), m = refDate.getMonth(); startDate = new Date(y, m, 1).toISOString().slice(0, 10); endDate = new Date(y, m + 1, 0).toISOString().slice(0, 10); }
-                const inRange = (d) => { const ds = d.date ? d.date.slice(0, 10) : ''; return ds >= startDate && ds <= endDate; };
+                    // ============ EXPORT EXCEL ============
+                    function exportReportExcel() {
+                        const period = document.getElementById('report-period').value;
+                        const dateVal = document.getElementById('report-date').value || today();
+                        const refDate = new Date(dateVal);
+                        let startDate, endDate;
+                        if (period === 'daily') { startDate = dateVal; endDate = dateVal; }
+                        else if (period === 'weekly') { const dow = refDate.getDay(); const mon = new Date(refDate); mon.setDate(refDate.getDate() - ((dow + 6) % 7)); const sun = new Date(mon); sun.setDate(mon.getDate() + 6); startDate = mon.toISOString().slice(0, 10); endDate = sun.toISOString().slice(0, 10); }
+                        else { const y = refDate.getFullYear(), m = refDate.getMonth(); startDate = new Date(y, m, 1).toISOString().slice(0, 10); endDate = new Date(y, m + 1, 0).toISOString().slice(0, 10); }
+                        const inRange = (d) => { const ds = d.date ? d.date.slice(0, 10) : ''; return ds >= startDate && ds <= endDate; };
 
-                const sales = allData.filter(d => d.type === 'sale' && inRange(d));
-                const expenses = allData.filter(d => d.type === 'expense' && inRange(d));
-                const receiving = allData.filter(d => d.type === 'receiving' && inRange(d));
+                        const sales = allData.filter(d => d.type === 'sale' && inRange(d));
+                        const expenses = allData.filter(d => d.type === 'expense' && inRange(d));
+                        const receiving = allData.filter(d => d.type === 'receiving' && inRange(d));
 
-                // Build CSV (Excel compatible with BOM)
-                let csv = '\uFEFF'; // BOM for UTF-8 Excel
-                csv += 'LAPORAN KEUANGAN - OCEAN FRESH SEAFOOD\n';
-                csv += `Periode: ${startDate} s/d ${endDate}\n\n`;
+                        // Build CSV (Excel compatible with BOM)
+                        let csv = '\uFEFF'; // BOM for UTF-8 Excel
+                        csv += 'LAPORAN KEUANGAN - OCEAN FRESH SEAFOOD\n';
+                        csv += `Periode: ${startDate} s/d ${endDate}\n\n`;
 
-                csv += '=== PENJUALAN ===\n';
-                csv += 'Tanggal,Order ID,Item,Qty,Harga,Total,Metode\n';
-                sales.forEach(s => {
-                    csv += `${s.date ? s.date.slice(0, 10) : ''},${s.order_id},${s.item_name},${s.item_qty},${s.item_price},${s.total},${s.payment_method}\n`;
-                });
-                const totalSales = sales.reduce((s, d) => s + Number(d.total || 0), 0);
-                csv += `,,,,TOTAL PENJUALAN,${totalSales},\n\n`;
+                        csv += '=== PENJUALAN ===\n';
+                        csv += 'Tanggal,Order ID,Item,Qty,Harga,Total,Metode\n';
+                        sales.forEach(s => {
+                            csv += `${s.date ? s.date.slice(0, 10) : ''},${s.order_id},${s.item_name},${s.item_qty},${s.item_price},${s.total},${s.payment_method}\n`;
+                        });
+                        const totalSales = sales.reduce((s, d) => s + Number(d.total || 0), 0);
+                        csv += `,,,,TOTAL PENJUALAN,${totalSales},\n\n`;
 
-                csv += '=== PENGELUARAN ===\n';
-                csv += 'Tanggal,Kategori,Deskripsi,Jumlah\n';
-                expenses.forEach(e => {
-                    csv += `${e.date ? e.date.slice(0, 10) : ''},${e.category},${e.item_name},${e.total}\n`;
-                });
-                const totalExp = expenses.reduce((s, d) => s + Number(d.total || 0), 0);
-                csv += `,,,TOTAL PENGELUARAN,${totalExp}\n\n`;
+                        csv += '=== PENGELUARAN ===\n';
+                        csv += 'Tanggal,Kategori,Deskripsi,Jumlah\n';
+                        expenses.forEach(e => {
+                            csv += `${e.date ? e.date.slice(0, 10) : ''},${e.category},${e.item_name},${e.total}\n`;
+                        });
+                        const totalExp = expenses.reduce((s, d) => s + Number(d.total || 0), 0);
+                        csv += `,,,TOTAL PENGELUARAN,${totalExp}\n\n`;
 
-                csv += '=== RECEIVING BARANG ===\n';
-                csv += 'Tanggal,Barang,Supplier,Qty,Total\n';
-                receiving.forEach(r => {
-                    csv += `${r.date ? r.date.slice(0, 10) : ''},${r.item_name},${r.category},${r.item_qty},${r.total}\n`;
-                });
-                const totalRec = receiving.reduce((s, d) => s + Number(d.total || 0), 0);
-                csv += `,,,,TOTAL RECEIVING,${totalRec}\n\n`;
+                        csv += '=== RECEIVING BARANG ===\n';
+                        csv += 'Tanggal,Barang,Supplier,Qty,Total\n';
+                        receiving.forEach(r => {
+                            csv += `${r.date ? r.date.slice(0, 10) : ''},${r.item_name},${r.category},${r.item_qty},${r.total}\n`;
+                        });
+                        const totalRec = receiving.reduce((s, d) => s + Number(d.total || 0), 0);
+                        csv += `,,,,TOTAL RECEIVING,${totalRec}\n\n`;
 
-                csv += `LABA BERSIH,${totalSales - totalExp - totalRec}\n`;
+                        csv += `LABA BERSIH,${totalSales - totalExp - totalRec}\n`;
 
-                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `Laporan_${period}_${dateVal}.csv`;
-                a.click();
-                URL.revokeObjectURL(url);
-                showToast('Laporan berhasil di-export!');
-            }
+                        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `Laporan_${period}_${dateVal}.csv`;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                        showToast('Laporan berhasil di-export!');
+                    }
 
-            // ============ GOOGLE DRIVE SETUP ============
-            function showGoogleDriveModal() {
-                showModal('google-drive-modal');
-            }
+                    // ============ EOD PAGE ============
+                    function renderEOD() {
+                        const dateVal = document.getElementById('eod-date').value || today();
+                        document.getElementById('eod-date').value = dateVal;
+                        const sales = allData.filter(d => d.type === 'sale' && d.date && d.date.startsWith(dateVal));
+                        const expenses = allData.filter(d => d.type === 'expense' && d.date && d.date.startsWith(dateVal));
+                        const receiving = allData.filter(d => d.type === 'receiving' && d.date && d.date.startsWith(dateVal));
+                        const eodRecords = allData.filter(d => d.type === 'eod' && d.date && d.date.startsWith(dateVal));
+                        const isEodDone = eodRecords.length > 0;
 
-            function setupGoogleDrive(e) {
-                e.preventDefault();
-                const link = document.getElementById('google-drive-link').value;
-                const sheetId = document.getElementById('google-sheet-id').value;
+                        const totalSales = sales.reduce((s, d) => s + Number(d.total || 0), 0);
+                        const totalTax = Math.round(totalSales * 0.1);
+                        const totalExp = expenses.reduce((s, d) => s + Number(d.total || 0), 0);
+                        const totalRec = receiving.reduce((s, d) => s + Number(d.total || 0), 0);
 
-                // Validate and extract folder ID from Google Drive link
-                const folderMatch = link.match(/\/folders\/([a-zA-Z0-9-_]+)/);
-                if (!folderMatch) {
-                    showToast('Link Google Drive tidak valid. Gunakan link folder!', 'error');
-                    return;
-                }
+                        // Payment breakdown
+                        const byMethod = { cash: 0, debit: 0, qris: 0 };
+                        sales.forEach(s => { byMethod[s.payment_method] = (byMethod[s.payment_method] || 0) + Number(s.total || 0); });
 
-                const folderId = folderMatch[1];
-                const config = {
-                    driveLink: link,
-                    driveFolderId: folderId,
-                    googleSheetId: sheetId || '',
-                    setupDate: new Date().toISOString()
-                };
+                        // Orders count
+                        const orderIds = new Set(sales.map(s => s.order_id));
 
-                localStorage.setItem('googleDriveConfig', JSON.stringify(config));
-                document.getElementById('google-drive-link').value = link;
-                document.getElementById('google-sheet-id').value = sheetId;
-
-                showToast('✅ Konfigurasi Google Drive berhasil disimpan!');
-                closeModal();
-
-                // Show integration info
-                setTimeout(() => {
-                    showToast('📁 Backup data siap dilakukan secara berkala', 'success');
-                }, 500);
-            }
-
-            // ============ EOD PAGE ============
-            function renderEOD() {
-                const dateVal = document.getElementById('eod-date').value || today();
-                document.getElementById('eod-date').value = dateVal;
-                const sales = allData.filter(d => d.type === 'sale' && d.date && d.date.startsWith(dateVal));
-                const expenses = allData.filter(d => d.type === 'expense' && d.date && d.date.startsWith(dateVal));
-                const receiving = allData.filter(d => d.type === 'receiving' && d.date && d.date.startsWith(dateVal));
-                const eodRecords = allData.filter(d => d.type === 'eod' && d.date && d.date.startsWith(dateVal));
-                const isEodDone = eodRecords.length > 0;
-
-                const totalSales = sales.reduce((s, d) => s + Number(d.total || 0), 0);
-                const totalTax = Math.round(totalSales * 0.1);
-                const totalExp = expenses.reduce((s, d) => s + Number(d.total || 0), 0);
-                const totalRec = receiving.reduce((s, d) => s + Number(d.total || 0), 0);
-
-                // Payment breakdown
-                const byMethod = { cash: 0, debit: 0, qris: 0 };
-                sales.forEach(s => { byMethod[s.payment_method] = (byMethod[s.payment_method] || 0) + Number(s.total || 0); });
-
-                // Orders count
-                const orderIds = new Set(sales.map(s => s.order_id));
-
-                const el = document.getElementById('eod-content');
-                el.innerHTML = `
+                        const el = document.getElementById('eod-content');
+                        el.innerHTML = `
     <div class="max-w-2xl mx-auto">
       ${isEodDone ? '<div class="mb-4 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-center gap-3"><span class="text-2xl">✅</span><div><p class="font-bold text-emerald-800">EOD Sudah Diproses</p><p class="text-xs text-emerald-600">End of Day untuk tanggal ${dateVal} telah selesai.</p></div></div>' : ''}
       <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
@@ -1231,117 +1326,126 @@
         </div>
       </div>
     </div>`;
-                lucide.createIcons();
-            }
+                        lucide.createIcons();
+                    }
 
-            async function processEOD() {
-                closeModal();
-                const dateVal = document.getElementById('eod-date').value || today();
-                if (allData.length >= 999) { showToast('Batas data tercapai!', 'error'); return; }
-                const sales = allData.filter(d => d.type === 'sale' && d.date && d.date.startsWith(dateVal));
-                const totalSales = sales.reduce((s, d) => s + Number(d.total || 0), 0);
-                const r = await window.dataSdk.create({ type: 'eod', date: new Date(dateVal + 'T23:59:59').toISOString(), item_name: 'EOD ' + dateVal, item_price: 0, item_qty: 0, total: totalSales, category: 'eod', payment_method: '', note: 'EOD completed', order_id: '', status: 'closed' });
-                if (r.isOk) { showToast('End of Day berhasil diproses! 🌙'); renderEOD(); }
-                else showToast('Gagal memproses EOD', 'error');
-            }
+                    async function processEOD() {
+                        closeModal();
+                        const dateVal = document.getElementById('eod-date').value || today();
+                        const sales = allData.filter(d => d.type === 'sale' && d.date && d.date.startsWith(dateVal));
+                        const totalSales = sales.reduce((s, d) => s + Number(d.total || 0), 0);
+                        const record = {
+                            __backendId: genId(),
+                            type: 'eod',
+                            date: new Date(dateVal + 'T23:59:59').toISOString(),
+                            item_name: 'EOD ' + dateVal,
+                            item_price: 0,
+                            item_qty: 0,
+                            total: totalSales,
+                            category: 'eod',
+                            payment_method: '',
+                            note: 'EOD completed',
+                            order_id: '',
+                            status: 'closed'
+                        };
+                        allData.push(record);
+                        showToast('End of Day berhasil diproses! 🌙');
+                        renderEOD();
+                        autoSaveToGoogleDrive();
+                    }
 
-            function exportEODExcel(dateVal) {
-                document.getElementById('report-period').value = 'daily';
-                document.getElementById('report-date').value = dateVal;
-                exportReportExcel();
-            }
+                    function exportEODExcel(dateVal) {
+                        document.getElementById('report-period').value = 'daily';
+                        document.getElementById('report-date').value = dateVal;
+                        exportReportExcel();
+                    }
 
-            // ============ DATA SDK ============
-            const dataHandler = {
-                onDataChanged(data) {
-                    allData = data;
-                    // Update order counter based on existing sales
-                    const orderIds = new Set(data.filter(d => d.type === 'sale').map(d => d.order_id).filter(Boolean));
-                    orderCounter = orderIds.size + 1;
+                    // ============ GOOGLE DRIVE BACKUP ============
+                    function generateAndDownloadBackup() {
+                        try {
+                            // Siapkan data untuk di-backup
+                            const timestamp = new Date().toISOString().slice(0, 10);
+
+                            // Konversi ke CSV
+                            let csv = '\uFEFF'; // BOM for UTF-8
+                            csv += 'BACKUP DATA - OCEAN FRESH SEAFOOD\n';
+                            csv += `Backup Date: ${new Date().toISOString()}\n\n`;
+
+                            csv += '=== PENJUALAN ===\n';
+                            csv += 'Date,Order ID,Item Name,Qty,Price,Total,Payment Method,Note\n';
+                            allData.filter(d => d.type === 'sale').forEach(s => {
+                                csv += `${s.date || ''},${s.order_id || ''},${s.item_name || ''},${s.item_qty || ''},${s.item_price || ''},${s.total || ''},${s.payment_method || ''},${(s.note || '').replace(/,/g, ' ')}\n`;
+                            });
+                            csv += '\n';
+
+                            csv += '=== PENGELUARAN ===\n';
+                            csv += 'Date,Category,Item Name,Total,Note\n';
+                            allData.filter(d => d.type === 'expense').forEach(e => {
+                                csv += `${e.date || ''},${e.category || ''},${e.item_name || ''},${e.total || ''},${(e.note || '').replace(/,/g, ' ')}\n`;
+                            });
+                            csv += '\n';
+
+                            csv += '=== RECEIVING BARANG ===\n';
+                            csv += 'Date,Item Name,Supplier,Qty,Total,Note\n';
+                            allData.filter(d => d.type === 'receiving').forEach(r => {
+                                csv += `${r.date || ''},${r.item_name || ''},${r.category || ''},${r.item_qty || ''},${r.total || ''},${(r.note || '').replace(/,/g, ' ')}\n`;
+                            });
+                            csv += '\n';
+
+                            csv += '=== INVENTORY ===\n';
+                            csv += 'Item Name,Category,Qty,Unit,Price Per Unit,Total Value\n';
+                            allData.filter(d => d.type === 'inventory').forEach(i => {
+                                csv += `${i.item_name || ''},${i.category || ''},${i.item_qty || ''},${i.note || 'kg'},${i.item_price || ''},${i.total || ''}\n`;
+                            });
+
+                            // Download file CSV secara otomatis
+                            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `Backup_Ocean_Fresh_${timestamp}.csv`;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+
+                        } catch (err) {
+                            console.error('Backup error:', err);
+                        }
+                    }
+
+                    function openGoogleDriveBackup() {
+                        // Buka folder Google Drive di tab baru
+                        window.open(GOOGLE_DRIVE_FOLDER_LINK, '_blank');
+                        showToast('📁 Google Drive folder terbuka. Silakan upload file CSV yang telah di-download.');
+                    }
+
+                    // ============ DATA SDK ============
+                    // Disabled - Data disimpan langsung di memory (allData array)
+
+                    // Init UI
                     document.getElementById('order-num').textContent = String(orderCounter).padStart(4, '0');
-                    // Re-render current page
-                    if (currentPage === 'orders') renderOrders();
-                    if (currentPage === 'inventory') renderInventory();
-                    if (currentPage === 'receiving') renderReceiving();
-                    if (currentPage === 'expenses') renderExpenses();
-                    if (currentPage === 'reports') renderReports();
-                    if (currentPage === 'eod') renderEOD();
-                }
-            };
+                    document.getElementById('order-date-filter').value = today();
+                    document.getElementById('report-date').value = today();
+                    document.getElementById('eod-date').value = today();
+                    document.getElementById('eod-date').addEventListener('change', renderEOD);
+                    document.getElementById('drive-backup-btn').addEventListener('click', () => {
+                        generateAndDownloadBackup();
+                        setTimeout(() => openGoogleDriveBackup(), 500);
+                    });
+                    renderCatTabs();
+                    filterMenu();
+                    renderCart();
 
-            // ============ ELEMENT SDK ============
-            const defaultConfig = {
-                restaurant_name: 'Ocean Fresh',
-                tagline: 'Seafood Restaurant',
-                background_color: '#f1f5f9',
-                surface_color: '#ffffff',
-                text_color: '#1e293b',
-                primary_action: '#0891b2',
-                secondary_action: '#64748b',
-                font_family: 'Plus Jakarta Sans',
-                font_size: 14,
-            };
-
-            function applyConfig(config) {
-                const name = config.restaurant_name || defaultConfig.restaurant_name;
-                const tagline = config.tagline || defaultConfig.tagline;
-                const bg = config.background_color || defaultConfig.background_color;
-                const surface = config.surface_color || defaultConfig.surface_color;
-                const text = config.text_color || defaultConfig.text_color;
-                const primary = config.primary_action || defaultConfig.primary_action;
-                const font = config.font_family || defaultConfig.font_family;
-                const size = config.font_size || defaultConfig.font_size;
-
-                document.getElementById('el-restaurant-name').textContent = name;
-                document.getElementById('el-tagline').textContent = tagline;
-                document.body.parentElement.style.fontFamily = `${font}, Plus Jakarta Sans, sans-serif`;
-                document.body.style.fontSize = size + 'px';
-            }
-
-            window.elementSdk.init({
-                defaultConfig,
-                onConfigChange: async (config) => { applyConfig(config); },
-                mapToCapabilities: (config) => ({
-                    recolorables: [
-                        { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-                        { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
-                        { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-                        { get: () => config.primary_action || defaultConfig.primary_action, set: (v) => { config.primary_action = v; window.elementSdk.setConfig({ primary_action: v }); } },
-                        { get: () => config.secondary_action || defaultConfig.secondary_action, set: (v) => { config.secondary_action = v; window.elementSdk.setConfig({ secondary_action: v }); } },
-                    ],
-                    borderables: [],
-                    fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
-                    fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } },
-                }),
-                mapToEditPanelValues: (config) => new Map([
-                    ['restaurant_name', config.restaurant_name || defaultConfig.restaurant_name],
-                    ['tagline', config.tagline || defaultConfig.tagline],
-                ])
-            });
-
-            // Init Data SDK
-            (async () => {
-                const r = await window.dataSdk.init(dataHandler);
-                if (r.isError) console.error('Data SDK init failed');
-            })();
-
-            // Init UI
-            document.getElementById('order-num').textContent = String(orderCounter).padStart(4, '0');
-            document.getElementById('order-date-filter').value = today();
-            document.getElementById('report-date').value = today();
-            document.getElementById('eod-date').value = today();
-            document.getElementById('eod-date').addEventListener('change', renderEOD);
-            renderCatTabs();
-            filterMenu();
-            renderCart();
-
-            // Wait for lucide icons to load
-            setTimeout(() => {
-                lucide.createIcons();
-            }, 100);
-        </script>
+                    // Wait for lucide icons to load
+                    setTimeout(() => {
+                        lucide.createIcons();
+                    }, 100);
+                </script>
+            </div>
+        </main>
     </div>
-    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9f56b9325690c5f0',t:'MTc3NzcyMTczNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9f56ed5d51040fad',t:'MTc3NzcyMzg3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
 </body>
 
 </html>
